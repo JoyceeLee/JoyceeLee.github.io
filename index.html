@@ -10,9 +10,11 @@
 
         $scope.$watch('lastName', function(newValue, oldValue){
           console.log('new value is ' + newValue);
+          console.log('firstName is ' + $scope.firstName);
         });
 
         setTimeout(function(){
+          console.log('time out !');
           $scope.lastName = 'Smith';
           $scope.$apply();
         }, 10000);
