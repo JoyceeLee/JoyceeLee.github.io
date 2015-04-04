@@ -11,7 +11,7 @@
         $scope.$watch('lastName', function(newValue, oldValue){
           console.log('new value is ' + newValue);
         });
-        $scope.lastName = 'Amy';
+        // $scope.lastName = 'Amy'; ok can be run
         setTimeout(function(){
           console.log('time out');
           $scope.lastName = 'Smith';
