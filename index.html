@@ -7,12 +7,11 @@
       var nameApp = angular.module('nameApp', []);
       nameApp.controller('NameCtrl', function ($scope){
         $scope.firstName = 'John';
-
+        $scope.lastName = 'Lee';
         $scope.$watch('lastName', function(newValue, oldValue){
           console.log('new value is ' + newValue);
-          console.log('firstName is ' + $scope.firstName);
         });
-
+        $scope.lastName = 'Amy';
         setTimeout(function(){
           console.log('time out');
           $scope.lastName = 'Smith';
