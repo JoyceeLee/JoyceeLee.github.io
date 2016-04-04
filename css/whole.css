@@ -1,0 +1,161 @@
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@-webkit-keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@-moz-keyframes fadeIn {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+@-o-keyframes fadeIn {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+body {
+	background-image: url('../img/bg.jpg');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: left top;
+}
+
+/* header part */
+.about_me img {
+	position: absolute;
+	left: 120px;
+	top: 20px;
+	width: 100px;
+	height: auto;
+	-webkit-border-radius: 45px;
+	border-radius: 45px;
+	opacity: 0.8;
+}
+
+.fa_connect {
+	float : right;
+	position: relative;
+	right: 20px;
+	top: 80px;
+	color: #000000;
+	opacity: 0.5;
+}
+.about_me {
+	height: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+	position: fixed;
+}
+
+h1 { /* must use h1 instead of its id */
+	float : left;
+	position: absolute;
+	left: 220px;
+	top: 20px;
+	padding-left: 30px;
+	padding-top: 20px;
+	font-size: 20px;
+	color: #004422;
+	opacity: 1;
+	animation: fadeIn 2s;
+	-moz-animation: fadeIn 2s;
+	-webkit-animation: fadeIn 2s;
+	-o-animation: fadeIn 2s;
+
+	transition: transform 700ms, opacity 700ms;
+	-webkit-transition: -webkit-transform 700ms, opacity 700ms;
+}
+.hide {
+	opacity: 0;
+	transform: translateY(1rem);
+	-webkit-transform: translateY(1rem);
+    -ms-transform: translateY(1rem);
+}
+
+
+/* contents part */
+.contents {
+	position: absolute;
+	top: 150px;
+	left: 220px;
+	width: 1100px;
+	height: 525px;
+	overflow: auto;
+}
+section { 
+	background-color: #ffffff;
+	font-family: Arial;
+	opacity: 0.5;
+	margin-bottom: 10px;
+	height: 470px;
+	padding: 20px 50px 30px 50px;
+	border: 5px, solid, #000000;
+	border-radius: 5px;
+	box-shadow: 2px 2px 3px 5px rgba(0,0,0,0.3);
+}
+ 
+/* The nav is fixed on the right side  and we center it by translating it 50% 
+(we don't know it's height so we can't use the negative margin trick) */
+nav {
+    position: fixed;
+    z-index: 9999;
+    left: 70px;
+    top: 280px;
+    width:150px;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+nav a {
+	display: block;
+	font-size: 13px;
+	font-family: Monaco, Consolas, monospace;
+	float: left;
+	margin-top: 0px;
+	margin-bottom: 5px;
+	width: 130px;
+	height: 35px;
+	color: #555;
+	border-radius: 20%;
+	box-shadow: 1px 1px 2px 3px rgba(0,0,0,0.3);
+}
+
+nav a i {
+	float: left;
+	margin-top: 10px;
+	margin-left: 8px;
+}
+ 
+nav a:after {
+    position: absolute;
+    height: 30px;
+    color: #f00;
+}
+ 
+nav a:hover:after {
+    color: rgba(0,0,0,1);
+}
+.introh1 {
+	text-align: left;
+	font-size: 18px;
+	margin-top: 20px;
+}
+.introh2 {
+	font-size: 13px;
+}
+.introh2 img {
+	margin-bottom: 10px;
+}
+.sec4but {
+	width: 30px; 
+	height: 30px; 
+	border: 0px; 
+	background: url('../img/FB-f-Logo__blue_58.jpeg'); 
+	background-size:30px 30px;
+}
