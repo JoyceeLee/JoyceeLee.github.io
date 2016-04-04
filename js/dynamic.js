@@ -1,12 +1,11 @@
 $(document).ready(function() {
 	var r = ["Hi.", 
     "I'm Li, Yang",
-    "You can also call me Joyce Lee.", 
+    "You can also call me Joyce.", 
     "I major in Computer Science and now study at USC.",
     "I enjoy coding with Java, Python, C/C++,",
-    "as well as play with HTML, CSS & JavaScript.",
-    "I'm familiar with Mac OS, Linux & Windows.",
-    "Eclipse, Xcode, Matlab, MySQL, Git...  are tools I realy like."]; 
+    "as well as playing with HTML, CSS & JavaScript.",
+    "Hope you like my blog."]; 
     var intro = $("#intro");
     var idx = 0;
 
