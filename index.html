@@ -1,30 +1,100 @@
-<html ng-app="nameApp">
-  <head>
-    <meta charset="utf-8">
-    <title>Angular.js Example</title>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.min.js"></script>
-    <script>
-      var nameApp = angular.module('nameApp', []);
-      nameApp.controller('NameCtrl', function ($scope){
-        $scope.firstName = 'John';
-        $scope.lastName = 'Lee';
-        $scope.$watch('lastName', function(newValue, oldValue){
-          console.log('new value is ' + newValue);
-        });
-        // $scope.lastName = 'Amy'; ok can be run
-        setTimeout(function(){
-          console.log('time out');
-          $scope.lastName = 'Smith';
-          // $scope.$apply();
-        }, 3000);
-      });
-    </script>
-  </head>
-  <body ng-controller="NameCtrl">
-    First name:<input ng-model="firstName" type="text"/>
-    <br>
-    Last name:<input ng-model="lastName" type="text"/>
-    <br>
-    Hello {{firstName}} {{lastName}}
-  </body>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>LiYang's Page</title>
+
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/whole.css">
+
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/waypoints.min.js"></script>
+<script src="js/dynamic.js"></script>
+</head>
+<body>
+    <header>
+	    <div id="about_me" class="about_me">
+		  <img src="img/me.jpg" alt="Li Yang">
+    		<h1 id="intro"></h1>
+	       	<div class="fa_connect">
+			    <a target="_blank" href="https://github.com/JoyceeLee"><i class="fa fa-github-alt fa-lg"></i></a>
+			&nbsp;&nbsp;
+			    <a target="_blank" href="https://www.facebook.com/profile.php?id=100005769099353"><i class="fa fa-facebook fa-lg"></i></a>
+			&nbsp;&nbsp;
+			    <a target="_blank" href="https://www.linkedin.com/pub/yang-li/71/407/32"><i class="fa fa-linkedin fa-lg"></i></a>
+			&nbsp;&nbsp;
+			    <a href="#"><i class="fa fa-envelope fa-lg"></i></a>
+		    </div>
+	    </div>
+    </header>
+	<nav>
+        <a class="navlink" href="#section1" class="currentSec" style="background-color: rgba(255, 255, 255, 0.5);"><i class="fa fa-paw fa-lg"> About Me</i></a>
+        <a href="#section2" style="background-color: rgba(255, 255, 255, 0.5);"><i class="fa fa-paw fa-lg"> AI Game</i></a>
+        <a href="#section3" style="background-color: rgba(255, 255, 255, 0.5);"><i class="fa fa-paw fa-lg"> Front-end</i></a>
+        <a href="#section4" style="background-color: rgba(255, 255, 255, 0.5);"><i class="fa fa-paw fa-lg"> Algorithms</i></a>
+    </nav>
+    <div class="contents">
+        <section id="section1">
+            <ul class="introh1">
+    			<li><b>As a student ...<br/></b>
+    				<ul class="introh2">
+    					<img src="img/usc.png" height="50" align="middle"/><span>&nbsp; M.S. of Computer Science,&nbsp;&nbsp; University of Southern California</span>
+                        <br/>
+    					<img src="img/tongji.png" height="50" align="middle"/><span>&nbsp; B.E. of Computer Science,&nbsp;&nbsp; Tongji University</span>
+    				</ul>
+    			</li>
+    			<li><b>As a programmer ...</b><br/>
+    				<table class="introh2">
+                        <tr>
+                            <td style="font-size: 18px;">iOS projects</td>
+                            <td width="20px;"></td>
+                            <td>02. 2014 - 05. 2014</td>
+                            <td width="10px;"></td>
+                            <td><a href="https://www.youtube.com/watch?v=UpI3kBWzS0c">iOS Game Development - Qix Must Die<a/></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td width="20px;"></td>
+                            <td>09. 2013 - 12. 2013</td>
+                            <td width="10px;"></td>
+                            <td><a href="http://greenbay.usc.edu/csci577/fall2013/projects/team04/index.html">LiveRiot video editing system and social networking enhancement<a/></td>
+                        </tr>
+                        <tr>
+                            <td style="font-size: 18px;">Website projects</td>
+                            <td width="20px;"></td>
+                            <td>10. 2012 - 01. 2013</td>
+                            <td width="10px;"></td>
+                            <td><a href="#">System for Measurement and Analysis of Energy Consumption<a/></td>
+                        </tr>
+                        <tr>
+                            <td style="font-size: 18px;">Machine Learning projects</td>
+                            <td width="20px;"></td>
+                            <td>09. 2012</td>
+                            <td width="10px;"></td>
+                            <td><a href="http://math.tongji.edu.cn/model/docs/yuchunhui.pdf">China Undergraduate Mathematical Contest in Modeling<a/></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td width="20px;"></td>
+                            <td>03. 2012 - 05.2013</td>
+                            <td width="10px;"></td>
+                            <td><a href="https://github.com/JoyceeLee/Machine_Learning/tree/master/SVM_GraphClassification-master">Graph Classification with SVM<a/></td>
+                        </tr>
+                    </table>
+    			</li>
+    		</ul>
+        </section>
+        <section id="section2">
+        </section>
+        <section id="section3">
+        </section>
+        <section id="section4">
+            <ul>
+                <!-- <li>Login with <button class="sec4but" onclick="fblogin();"> </button></li> -->
+                <li><a href="findKPoint/index.html">Find closed k points</a></li>
+            </ul>
+        </section>
+    </div>
+    <!-- <div id="fb-root"></div> -->
+<noscript/>
+</body>
 </html>
