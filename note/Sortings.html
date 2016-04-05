@@ -1,0 +1,288 @@
+<div><strong>&nbsp;</strong></div>
+<table>
+<tbody>
+<tr>
+<td style="text-align: left;">
+<div><span style="font-size: 13px;">方法</span></div>
+</td>
+<td>
+<div><span style="font-size: 13px;">时间复杂度</span></div>
+</td>
+<td>
+<div><span style="font-size: 13px;">空间复杂度</span></div>
+</td>
+<td>
+<div><span style="font-size: 13px;">Stable</span></div>
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+<div><span style="font-size: 13px;">冒泡排序（Bubble Sort）</span></div>
+</td>
+<td style="text-align: left;">
+<div><span style="font-size: 13px;">O(n) &mdash; O(n^2)</span></div>
+</td>
+<td style="text-align: left;">
+<div><span style="font-size: 13px;">O(1)</span></div>
+</td>
+<td style="text-align: left;">
+<div><span style="font-size: 13px;">yes</span></div>
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+<div><span style="font-size: 13px;">选择排序（Selection&nbsp;Sort）</span></div>
+</td>
+<td style="text-align: left;">
+<div><span style="font-size: 13px;">O(n^2) &mdash; O(n^2)</span></div>
+</td>
+<td style="text-align: left;">
+<div><span style="font-size: 13px;">O(1)</span></div>
+</td>
+<td style="text-align: left;">
+<div><span style="font-size: 13px;">no</span></div>
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+<div><span style="font-size: 13px;">插入排序（Insertion Sort）</span></div>
+</td>
+<td style="text-align: left;">
+<div><span style="font-size: 13px;">O(n) &mdash; O(n^2)</span></div>
+</td>
+<td style="text-align: left;">
+<div><span style="font-size: 13px;">O(1)</span></div>
+</td>
+<td style="text-align: left;">
+<div><span style="font-size: 13px;">yes</span></div>
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+<div><span style="font-size: 13px;">希尔排序（Shell Sort）</span></div>
+</td>
+<td style="text-align: left;">
+<div><span style="font-size: 13px;">O(n) &mdash; O(n log^2 n)</span></div>
+</td>
+<td style="text-align: left;">
+<div><span style="font-size: 13px;">O(1)</span></div>
+</td>
+<td style="text-align: left;">
+<div><span style="font-size: 13px;">no</span></div>
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+<div><span style="font-size: 13px;">快速排序（Quick Sort）</span></div>
+</td>
+<td style="text-align: left;">
+<div><span style="font-size: 13px;">O(n log n) &mdash;&nbsp;O(n log n) &mdash;&nbsp;O(n^2)</span></div>
+</td>
+<td style="text-align: left;">
+<div><span style="font-size: 13px;">O(log n) &mdash;&nbsp;O(n)</span></div>
+</td>
+<td style="text-align: left;">
+<div><span style="font-size: 13px;">no, but the stable exist</span></div>
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+<div><span style="font-size: 13px;">归并排序（Merge Sort）</span></div>
+</td>
+<td style="text-align: left;">
+<div><span style="font-size: 13px;">O(n log n)</span></div>
+</td>
+<td style="text-align: left;">
+<div><span style="font-size: 13px;">O(n)</span></div>
+</td>
+<td style="text-align: left;">
+<div><span style="font-size: 13px;">yes</span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div><span style="font-size: 13px;">堆排序（Heap Sort）</span></div>
+</td>
+<td>
+<div><span style="font-size: 13px;">O(n log n)</span></div>
+</td>
+<td>
+<div><span style="font-size: 13px;">1</span></div>
+</td>
+<td style="text-align: left;">
+<div><span style="font-size: 13px;">no</span></div>
+</td>
+</tr>
+</tbody>
+</table>
+<div style="text-align: left;"><strong>&nbsp;</strong></div>
+<div style="text-align: left;"><strong>// 1. 冒泡排序</strong></div>
+<div style="text-align: left;">
+<div class="cnblogs_code">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> bubbleSort(<span style="color: #0000ff;">int</span><span style="color: #000000;">[] A) {
+</span><span style="color: #008080;"> 2</span>      <span style="color: #0000ff;">for</span>(<span style="color: #0000ff;">int</span> i=A.length; i&gt;0; i--<span style="color: #000000;">) {
+</span><span style="color: #008080;"> 3</span>           <span style="color: #0000ff;">boolean</span> flag = <span style="color: #0000ff;">true</span><span style="color: #000000;">;
+</span><span style="color: #008080;"> 4</span>           <span style="color: #0000ff;">for</span>(<span style="color: #0000ff;">int</span> j=1; j&lt;i; j++<span style="color: #000000;">) {
+</span><span style="color: #008080;"> 5</span>                <span style="color: #0000ff;">if</span>(A[j]&lt;A[j-1<span style="color: #000000;">]) {
+</span><span style="color: #008080;"> 6</span>                     <span style="color: #0000ff;">int</span> tmp = A[j-1<span style="color: #000000;">];
+</span><span style="color: #008080;"> 7</span>                     A[j-1] =<span style="color: #000000;"> A[j];
+</span><span style="color: #008080;"> 8</span>                     A[j] =<span style="color: #000000;"> tmp;
+</span><span style="color: #008080;"> 9</span>                     flag = <span style="color: #0000ff;">false</span><span style="color: #000000;">;
+</span><span style="color: #008080;">10</span> <span style="color: #000000;">               }
+</span><span style="color: #008080;">11</span> <span style="color: #000000;">          }
+</span><span style="color: #008080;">12</span>           <span style="color: #0000ff;">if</span><span style="color: #000000;">(flag) {
+</span><span style="color: #008080;">13</span>                <span style="color: #0000ff;">break</span><span style="color: #000000;">;
+</span><span style="color: #008080;">14</span> <span style="color: #000000;">          }
+</span><span style="color: #008080;">15</span> <span style="color: #000000;">     }
+</span><span style="color: #008080;">16</span> }</pre>
+</div>
+</div>
+<div style="text-align: left;">&nbsp;</div>
+<div style="text-align: left;"><strong>// 2. 选择排序</strong></div>
+<div style="text-align: left;">
+<div class="cnblogs_code">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> selectionSort(<span style="color: #0000ff;">int</span><span style="color: #000000;">[] A) {
+</span><span style="color: #008080;"> 2</span>      <span style="color: #0000ff;">for</span>(<span style="color: #0000ff;">int</span> i=A.length; i&gt;1; i--<span style="color: #000000;">) {
+</span><span style="color: #008080;"> 3</span>           <span style="color: #0000ff;">int</span> maxIdx = 0<span style="color: #000000;">;
+</span><span style="color: #008080;"> 4</span>           <span style="color: #0000ff;">for</span>(<span style="color: #0000ff;">int</span> j=1; j&lt;i; j++<span style="color: #000000;">) {
+</span><span style="color: #008080;"> 5</span>                <span style="color: #0000ff;">if</span>(A[j]&gt;<span style="color: #000000;">A[maxIdx]) {
+</span><span style="color: #008080;"> 6</span>                     maxIdx =<span style="color: #000000;"> j;
+</span><span style="color: #008080;"> 7</span> <span style="color: #000000;">               }
+</span><span style="color: #008080;"> 8</span> <span style="color: #000000;">          }
+</span><span style="color: #008080;"> 9</span>           <span style="color: #0000ff;">if</span>(maxIdx!=i-1<span style="color: #000000;">) {
+</span><span style="color: #008080;">10</span>                <span style="color: #0000ff;">int</span> tmp =<span style="color: #000000;"> A[maxIdx];
+</span><span style="color: #008080;">11</span>                A[maxIdx] = A[i-1<span style="color: #000000;">];
+</span><span style="color: #008080;">12</span>                A[i-1] =<span style="color: #000000;"> tmp;
+</span><span style="color: #008080;">13</span> <span style="color: #000000;">          }
+</span><span style="color: #008080;">14</span> <span style="color: #000000;">     }
+</span><span style="color: #008080;">15</span> }</pre>
+</div>
+<p>&nbsp;</p>
+</div>
+<div style="text-align: left;"><strong><strong>// 3. 插入排序</strong></strong>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> insertionSort(<span style="color: #0000ff;">int</span><span style="color: #000000;">[] A) {
+</span><span style="color: #008080;"> 2</span>      <span style="color: #0000ff;">for</span>(<span style="color: #0000ff;">int</span> i=1; i&lt;A.length; i++<span style="color: #000000;">) {
+</span><span style="color: #008080;"> 3</span>           <span style="color: #0000ff;">int</span> tmp =<span style="color: #000000;"> A[i];
+</span><span style="color: #008080;"> 4</span>           <span style="color: #0000ff;">int</span> j = i-1<span style="color: #000000;">;
+</span><span style="color: #008080;"> 5</span>           <span style="color: #0000ff;">while</span>(j&gt;=0<span style="color: #000000;">) {
+</span><span style="color: #008080;"> 6</span>                <span style="color: #0000ff;">if</span>(A[j]&gt;=<span style="color: #000000;">A[i])
+</span><span style="color: #008080;"> 7</span>                     j--<span style="color: #000000;">;
+</span><span style="color: #008080;"> 8</span>                <span style="color: #0000ff;">else</span> <span style="color: #0000ff;">break</span><span style="color: #000000;">;
+</span><span style="color: #008080;"> 9</span> <span style="color: #000000;">          }
+</span><span style="color: #008080;">10</span>           <span style="color: #0000ff;">int</span> tmp =<span style="color: #000000;"> A[i];
+</span><span style="color: #008080;">11</span>           j++<span style="color: #000000;">;
+</span><span style="color: #008080;">12</span>           <span style="color: #0000ff;">for</span>(<span style="color: #0000ff;">int</span> k=i; k&gt;j; k--<span style="color: #000000;">) {
+</span><span style="color: #008080;">13</span>                A[k] = A[k-1<span style="color: #000000;">];
+</span><span style="color: #008080;">14</span> <span style="color: #000000;">          }
+</span><span style="color: #008080;">15</span>           A[j] =<span style="color: #000000;"> tmp;
+</span><span style="color: #008080;">16</span> <span style="color: #000000;">     }
+</span><span style="color: #008080;">17</span> }</pre>
+</div>
+</div>
+<div style="text-align: left;">&nbsp;</div>
+<div style="text-align: left;"><strong>// 4. 希尔排序</strong> &nbsp;&mdash; &nbsp;插入排序的一种更高效的改进版本
+<div class="cnblogs_code">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> shellSort(<span style="color: #0000ff;">int</span><span style="color: #000000;">[] A) {
+</span><span style="color: #008080;"> 2</span>      <span style="color: #0000ff;">int</span> step =<span style="color: #000000;"> A.length;
+</span><span style="color: #008080;"> 3</span>      <span style="color: #0000ff;">while</span>(step&gt;1<span style="color: #000000;">) {
+</span><span style="color: #008080;"> 4</span>           step = step&gt;&gt;1<span style="color: #000000;">;
+</span><span style="color: #008080;"> 5</span>           <span style="color: #0000ff;">for</span>(<span style="color: #0000ff;">int</span> i=0; i&lt;A.length; i++<span style="color: #000000;">) {
+</span><span style="color: #008080;"> 6</span>                <span style="color: #0000ff;">int</span> pos = i+<span style="color: #000000;">step;
+</span><span style="color: #008080;"> 7</span>                <span style="color: #0000ff;">int</span> tmp =<span style="color: #000000;"> A[pos];
+</span><span style="color: #008080;"> 8</span>                <span style="color: #0000ff;">while</span>((pos-step&gt;=0) &amp;&amp; tmp&lt;A[pos-<span style="color: #000000;">step]) {
+</span><span style="color: #008080;"> 9</span>                     A[pos] = A[pos-<span style="color: #000000;">step];
+</span><span style="color: #008080;">10</span>                     pos -=<span style="color: #000000;"> step;
+</span><span style="color: #008080;">11</span> <span style="color: #000000;">               }
+</span><span style="color: #008080;">12</span>                A[pos] =<span style="color: #000000;"> tmp;
+</span><span style="color: #008080;">13</span> <span style="color: #000000;">          }
+</span><span style="color: #008080;">14</span> <span style="color: #000000;">     }    
+</span><span style="color: #008080;">15</span> }</pre>
+</div>
+</div>
+<div style="text-align: left;">&nbsp;</div>
+<div style="text-align: left;"><strong><strong>// 5. 快速排序</strong></strong>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> quickSort(<span style="color: #0000ff;">int</span>[] A, <span style="color: #0000ff;">int</span> start, <span style="color: #0000ff;">int</span><span style="color: #000000;"> end) {
+</span><span style="color: #008080;"> 2</span>      <span style="color: #0000ff;">if</span> (start &gt;= end) <span style="color: #0000ff;">return</span><span style="color: #000000;">;
+</span><span style="color: #008080;"> 3</span>      <span style="color: #0000ff;">int</span> i =<span style="color: #000000;"> start;
+</span><span style="color: #008080;"> 4</span>      <span style="color: #0000ff;">int</span> j =<span style="color: #000000;"> end;
+</span><span style="color: #008080;"> 5</span>      <span style="color: #0000ff;">int</span> tmp =<span style="color: #000000;"> A[i];
+</span><span style="color: #008080;"> 6</span>      <span style="color: #0000ff;">while</span>(i&lt;<span style="color: #000000;">j) {
+</span><span style="color: #008080;"> 7</span>           <span style="color: #0000ff;">while</span>(i&lt;j &amp;&amp; A[j]&gt;=<span style="color: #000000;">tmp)
+</span><span style="color: #008080;"> 8</span>                j--<span style="color: #000000;">;
+</span><span style="color: #008080;"> 9</span>           A[i] =<span style="color: #000000;"> A[j];
+</span><span style="color: #008080;">10</span>           <span style="color: #0000ff;">while</span>(i&lt;j &amp;&amp; A[i]&lt;<span style="color: #000000;">tmp)
+</span><span style="color: #008080;">11</span>                i++<span style="color: #000000;">;
+</span><span style="color: #008080;">12</span>           A[j] =<span style="color: #000000;"> A[i];
+</span><span style="color: #008080;">13</span> <span style="color: #000000;">      }
+</span><span style="color: #008080;">14</span>       A[i] =<span style="color: #000000;"> tmp;
+</span><span style="color: #008080;">15</span>       quickSort(A, start, i-1<span style="color: #000000;">);
+</span><span style="color: #008080;">16</span>       quickSort(A, i+1<span style="color: #000000;">, end);
+</span><span style="color: #008080;">17</span> }</pre>
+</div>
+<p>&nbsp;</p>
+</div>
+<div style="text-align: left;"><strong><strong>// 6. 归并排序</strong></strong>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> mergeSort(<span style="color: #0000ff;">int</span> A[], <span style="color: #0000ff;">int</span> start, <span style="color: #0000ff;">int</span><span style="color: #000000;"> end) {
+</span><span style="color: #008080;"> 2</span>       <span style="color: #0000ff;">if</span>(start&lt;<span style="color: #000000;">end) {
+</span><span style="color: #008080;"> 3</span>            <span style="color: #0000ff;">int</span> dis=(end-start)/2<span style="color: #000000;">;
+</span><span style="color: #008080;"> 4</span>             mergeSort(A,start,start+<span style="color: #000000;">dis);
+</span><span style="color: #008080;"> 5</span>             mergeSort(A,start+dis+1<span style="color: #000000;">,end);
+</span><span style="color: #008080;"> 6</span>            merge(A,start,start+dis,start+dis+1<span style="color: #000000;">,end);
+</span><span style="color: #008080;"> 7</span> <span style="color: #000000;">      }
+</span><span style="color: #008080;"> 8</span> <span style="color: #000000;">}
+</span><span style="color: #008080;"> 9</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> merge(<span style="color: #0000ff;">int</span>[] A,<span style="color: #0000ff;">int</span> start1,<span style="color: #0000ff;">int</span> end1,<span style="color: #0000ff;">int</span> start2,<span style="color: #0000ff;">int</span><span style="color: #000000;"> end2) {
+</span><span style="color: #008080;">10</span>      <span style="color: #0000ff;">int</span>[] temp=<span style="color: #0000ff;">new</span> <span style="color: #0000ff;">int</span>[end1-start1+end2-start2+2<span style="color: #000000;">];
+</span><span style="color: #008080;">11</span>      <span style="color: #0000ff;">int</span> k=0<span style="color: #000000;">;
+</span><span style="color: #008080;">12</span>      <span style="color: #0000ff;">int</span> i1=<span style="color: #000000;">start1;
+</span><span style="color: #008080;">13</span>      <span style="color: #0000ff;">int</span> i2=<span style="color: #000000;">start2;
+</span><span style="color: #008080;">14</span>      <span style="color: #0000ff;">while</span>(i1&lt;=end1&amp;&amp;i2&lt;=<span style="color: #000000;">end2) {
+</span><span style="color: #008080;">15</span>           <span style="color: #0000ff;">if</span>(A[i1]&lt;<span style="color: #000000;">A[i2])
+</span><span style="color: #008080;">16</span>                temp[k++]=A[i1++<span style="color: #000000;">];
+</span><span style="color: #008080;">17</span>           <span style="color: #0000ff;">else</span>
+<span style="color: #008080;">18</span>                temp[k++]=A[i2++<span style="color: #000000;">];
+</span><span style="color: #008080;">19</span> <span style="color: #000000;">     }
+</span><span style="color: #008080;">20</span>      <span style="color: #0000ff;">while</span>(i1&lt;=<span style="color: #000000;">end1)
+</span><span style="color: #008080;">21</span>           temp[k++]=A[i1++<span style="color: #000000;">];
+</span><span style="color: #008080;">22</span>      <span style="color: #0000ff;">while</span>(i2&lt;=<span style="color: #000000;">end2)
+</span><span style="color: #008080;">23</span>           temp[k++]=A[i2++<span style="color: #000000;">];
+</span><span style="color: #008080;">24</span>      <span style="color: #0000ff;">for</span>(<span style="color: #0000ff;">int</span> i=start1,mark=0;mark&lt;k;i++<span style="color: #000000;">)
+</span><span style="color: #008080;">25</span>           A[i]=temp[mark++<span style="color: #000000;">];
+</span><span style="color: #008080;">26</span> }</pre>
+</div>
+</div>
+<div style="text-align: left;">&nbsp;</div>
+<div style="text-align: left;"><strong><strong>// 7. 堆排序 &nbsp;&mdash; &nbsp;选择排序的一种更高效的改进版本</strong></strong>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #008000;">/*</span><span style="color: #008000;"> 父节点i的左子节点在位置 (2*i+1);
+</span><span style="color: #008080;"> 2</span> <span style="color: #008000;"> * 父节点i的右子节点在位置 (2*i+2);
+</span><span style="color: #008080;"> 3</span> <span style="color: #008000;"> * 子节点i的父节点在位置 floor((i-1)/2);
+</span><span style="color: #008080;"> 4</span>  <span style="color: #008000;">*/</span>
+<span style="color: #008080;"> 5</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> heapSort(<span style="color: #0000ff;">int</span><span style="color: #000000;">[] A) {
+</span><span style="color: #008080;"> 6</span>      <span style="color: #0000ff;">for</span>(<span style="color: #0000ff;">int</span> i=A.length/2;i&gt;=0;i--<span style="color: #000000;">) {
+</span><span style="color: #008080;"> 7</span> <span style="color: #000000;">          heapAdjust(A,i,A.length);
+</span><span style="color: #008080;"> 8</span>      } <span style="color: #008000;">//</span><span style="color: #008000;"> O(n)</span>
+<span style="color: #008080;"> 9</span>  
+<span style="color: #008080;">10</span>      <span style="color: #0000ff;">for</span>(<span style="color: #0000ff;">int</span> i=A.length-1;i&gt;0;i--<span style="color: #000000;">) {
+</span><span style="color: #008080;">11</span>           swap(A[0<span style="color: #000000;">],A[i]);
+</span><span style="color: #008080;">12</span>           heapAdjust(A,0<span style="color: #000000;">,i);
+</span><span style="color: #008080;">13</span>      } <span style="color: #008000;">//</span><span style="color: #008000;"> O(nlgn)</span>
+<span style="color: #008080;">14</span> <span style="color: #000000;">}
+</span><span style="color: #008080;">15</span>  
+<span style="color: #008080;">16</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> heapAdjust(<span style="color: #0000ff;">int</span>[] A,<span style="color: #0000ff;">int</span> i,<span style="color: #0000ff;">int</span> length) { <span style="color: #008000;">//</span><span style="color: #008000;"> siftDown</span>
+<span style="color: #008080;">17</span>      <span style="color: #0000ff;">while</span>(2*i+1&lt;<span style="color: #000000;">length) {
+</span><span style="color: #008080;">18</span>           <span style="color: #0000ff;">int</span> left=2*i+1<span style="color: #000000;">;
+</span><span style="color: #008080;">19</span>           <span style="color: #0000ff;">if</span>((left+1)&lt;length &amp;&amp; A[left]&lt;A[left+1<span style="color: #000000;">])
+</span><span style="color: #008080;">20</span>                left++<span style="color: #000000;">;
+</span><span style="color: #008080;">21</span>           <span style="color: #0000ff;">if</span>(A[i]&lt;<span style="color: #000000;">A[left]) {
+</span><span style="color: #008080;">22</span> <span style="color: #000000;">               swap(A[i],A[left]);
+</span><span style="color: #008080;">23</span>                i=<span style="color: #000000;">left;
+</span><span style="color: #008080;">24</span>           } <span style="color: #0000ff;">else</span>
+<span style="color: #008080;">25</span>                <span style="color: #0000ff;">break</span><span style="color: #000000;">;
+</span><span style="color: #008080;">26</span> <span style="color: #000000;">     }
+</span><span style="color: #008080;">27</span> } </pre>
+</div>
+<p>&nbsp;</p>
+</div>

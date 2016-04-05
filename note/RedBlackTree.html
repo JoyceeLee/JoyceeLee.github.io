@@ -1,0 +1,55 @@
+<div><a href="http://pages.cs.wisc.edu/~skrentny/cs367-common/readings/Red-Black-Trees/">http://pages.cs.wisc.edu/~skrentny/cs367-common/readings/Red-Black-Trees/</a></div>
+<div><a href="http://en.wikipedia.org/wiki/Red%E2%80%93black_tree">http://en.wikipedia.org/wiki/Red&ndash;black_tree</a></div>
+<div><img id="en-media:image/png:4c93671a49179e11cf0fef26866c3576:241:500" src="cid:4c93671a49179e11cf0fef26866c3576" alt="Diagram of binary tree. The black root node has two red children and four black grandchildren. The child nodes of the grandchildren are black nil pointers or red nodes with black nil pointers." width="500" height="241" /></div>
+<div>1.&nbsp;Every node is either red or black.</div>
+<div>2. The root is black.&nbsp;(This rule is sometimes omitted. Since the root can always be changed from red to black.)</div>
+<div>3. There are no 2 adjacent red nodes.</div>
+<div>4. Every&nbsp;path&nbsp;from a given node to any of its descendant NIL nodes contains the same number of black nodes.</div>
+<div>&nbsp;</div>
+<div><strong>Lemma</strong></div>
+<div>A red-black tree with n internal nodes has the height at most 2log(n+1)</div>
+<div>&nbsp;</div>
+<div><strong>Proof of the balance</strong></div>
+<div>A simple example to understand balancing is, a chain of 3 nodes is not possible in Red Black Tree</div>
+<div>
+<div class="cnblogs_code">
+<pre>A chain of 3 nodes is nodes is not possible in Red-<span style="color: #000000;">Black Trees. 
+Following are NOT Red</span>-<span style="color: #000000;">Black Trees
+        </span>30             30               30       
+       / \            /  \             /<span style="color: #000000;">  \
+     </span>20  NIL         20   NIL         20<span style="color: #000000;">   NIL
+    </span>/ \             / \              /<span style="color: #000000;">  \   
+  </span>10  NIL          10  NIL          10  NIL</pre>
+</div>
+</div>
+<div>&nbsp;</div>
+<div><strong>Operation</strong></div>
+<div><span style="color: #252525; font-family: Optima;">insert / delete / lookup / print&nbsp;&mdash;&mdash; in <strong>O(log N)</strong> worst-case time</span></div>
+<div>&nbsp;</div>
+<div><span style="text-decoration: underline;"><strong>ps : Rotate - O(1)</strong></span></div>
+<div><strong>left_rotate &amp;&nbsp;right_rotate</strong></div>
+<div>&nbsp;</div>
+<div><img id="en-media:image/gif:c0160a4b56dac5cca1f3bee7025d9415:none:none" src="cid:c0160a4b56dac5cca1f3bee7025d9415" alt="" /></div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div><strong>1. insert - O(log N)</strong></div>
+<div><span style="font-family: Optima;">[step1]&nbsp;use the BST insert algorithm to add K to the tree&nbsp;&mdash; O(log N)</span></div>
+<div><span style="font-family: Optima;">[step2]&nbsp;color the node containing K red</span></div>
+<div><span style="font-family: Optima;">[step3]&nbsp;restore red-black tree properties (if necessary)&nbsp;&mdash; worst case, O(log N)</span></div>
+<div>&nbsp;</div>
+<div><span style="font-family: Optima;">case 1 &gt; K&rsquo;s parent P is black, OK !</span></div>
+<div><span style="font-family: Optima;">case 2 &gt; K&rsquo;s parent P is red, there will be <strong>4+4</strong> cases</span></div>
+<div>&nbsp;</div>
+<div><span style="text-decoration: underline;"><span style="color: #1e98ff; font-family: Optima;">first 4 cases, P&rsquo;s sibling is NIL or black&nbsp;&mdash;&nbsp;<strong>change G to red!</strong></span></span></div>
+<div><span style="color: #1e98ff; font-family: Optima;">&lt;1&gt; G.left = P, P.left = K &nbsp;&mdash; &nbsp;left rotate</span></div>
+<div><img id="en-media:image/png:51bd3959b5db54a8a5ae09f00d47bd87:none:none" src="cid:51bd3959b5db54a8a5ae09f00d47bd87" alt="" /></div>
+<div><span style="color: #1e98ff; font-family: Optima;">&lt;2&gt; G.left = P, P.right = K &nbsp;&mdash; &nbsp;change color and K to root</span></div>
+<div><img id="en-media:image/png:d17cf55e17d206fa1d9a1e6c590bb49a:none:none" src="cid:d17cf55e17d206fa1d9a1e6c590bb49a" alt="" /></div>
+<div><span style="color: #1e98ff; font-family: Optima;">&lt;3&gt; G.right = P, P.left = K &nbsp;&mdash; &nbsp;change color and K to root</span></div>
+<div><img id="en-media:image/png:8ab1b00de6022681b1173730f67eb096:none:none" src="cid:8ab1b00de6022681b1173730f67eb096" alt="" /></div>
+<div><span style="color: #1e98ff; font-family: Optima;">&lt;4&gt;&nbsp;G.right = P, P.right = K</span></div>
+<div><img id="en-media:image/png:75fc1bf666edb0faceb21189ee0f3293:none:none" src="cid:75fc1bf666edb0faceb21189ee0f3293" alt="" /></div>
+<div><span style="text-decoration: underline;">&nbsp;</span></div>
+<div><span style="text-decoration: underline;"><span style="color: #1e98ff; font-family: Optima;">second 4 cases, P&rsquo;s sibling is red&nbsp;&mdash;&nbsp;<strong>recolor all the way up</strong></span></span></div>
+<div><img id="en-media:image/gif:b264ceeafb8b93f3549328427883b37e:none:none" src="cid:b264ceeafb8b93f3549328427883b37e" alt="Recoloring" /></div>
+<div>&nbsp;</div>

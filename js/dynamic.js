@@ -5,7 +5,8 @@ $(document).ready(function() {
     "I major in Computer Science and now study at USC.",
     "I enjoy coding with Java, Python, C/C++,",
     "as well as playing with HTML, CSS & JavaScript.",
-    "Hope you like my blog."]; 
+    "This is an on-going blog where I record my study and drawings.",
+    "Hope you like it :)"]; 
     var intro = $("#intro");
     var idx = 0;
 
@@ -27,7 +28,7 @@ $(document).ready(function() {
         setTimeout(f, 3500);
     }
 
-    setTimeout(f, 3000);
+    setTimeout(f, 4200);
 });
 
 var fixedScrollLayout = (function(){

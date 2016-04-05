@@ -1,44 +1,75 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-<title>LiYang's Page</title>
+<title>Joyce's Page</title>
 
-<link rel="stylesheet" href="css/font-awesome.min.css">
 <link rel="stylesheet" href="css/whole.css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="font-awesome.min.css">
+<link rel="stylesheet" href="font-awesome-ie7.min.css">
 
 <script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script src="js/waypoints.min.js"></script>
 <script src="js/dynamic.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $("section").hide();
+        $("#section1").show();
+
+        $("a.navlink").click(function(){
+            var section = $(this).attr("href");
+            // section = '"'+section+'"';
+            $(section).siblings().hide();
+            $(section).show();
+        });
+    });
+</script>
 </head>
-<body>
-	<nav>
-        <a class="navlink" href="#section1" class="currentSec" style="background-color: rgba(255, 255, 255, 0.5);"><i class="fa fa-paw fa-lg"> Home Page</i></a>
-        <a href="#section2" style="background-color: rgba(255, 255, 255, 0.5);"><i class="fa fa-paw fa-lg"> Notes</i></a>
-        <a href="#section3" style="background-color: rgba(255, 255, 255, 0.5);"><i class="fa fa-paw fa-lg"> Draws</i></a>
-        <a href="#section4" style="background-color: rgba(255, 255, 255, 0.5);"><i class="fa fa-paw fa-lg"> About Me</i></a>
-    </nav>
-    <div class="contents">
+<body id="container">
+    <div class="col-md-2" role="complementary">
+	    <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix">
+            <ul id="navigaterlist" class="nav bs-docs-sidenav">
+                <a class="navlink" href="#section1" class="currentSec" style="background-color: rgba(255, 255, 255, 0.5);"><i class="fa fa-paw fa-lg"> Home Page</i></a>
+                <a class="navlink" href="#section2" style="background-color: rgba(255, 255, 255, 0.5);"><i class="fa fa-paw fa-lg"> Notes</i></a>
+                <a class="navlink" href="#section3" style="background-color: rgba(255, 255, 255, 0.5);"><i class="fa fa-paw fa-lg"> Draws</i></a>
+                <a class="navlink" href="#section4" style="background-color: rgba(255, 255, 255, 0.5);"><i class="fa fa-paw fa-lg"> About Me</i></a>
+            </ul>
+        </nav>
+    </div>
+    <div class="col-md-9">
         <section id="section1">
+            <div id="about_me" class="about_me">
+                <img src="img/me.png" alt="Li Yang">
+                <h1 id="intro"></h1>
+                <div class="fa_connect">
+                    <a target="_blank" href="https://github.com/JoyceeLee"><i class="fa fa-github-alt fa-lg"></i></a>
+                    &nbsp;&nbsp;
+                    <a target="_blank" href="https://www.facebook.com/profile.php?id=100005769099353"><i class="fa fa-facebook fa-lg"></i></a>
+                    &nbsp;&nbsp;
+                    <a target="_blank" href="https://www.linkedin.com/pub/yang-li/71/407/32"><i class="fa fa-linkedin fa-lg"></i></a>
+                    &nbsp;&nbsp;
+                    <a href="#"><i class="fa fa-envelope fa-lg"></i></a>
+                </div>
+            </div>
         </section>
         <section id="section2">
+            <h4 class="noteList"><a href="note/Sortings.html">7 most commen sort algorithms</a></h4>
+            <h4 class="noteList"><a href="note/BST.html">Binary Search Tree</a></h4>
+            <h4 class="noteList"><a href="note/RedBlackTree.html">Red-Black Tree</a></h4>
         </section>
         <section id="section3">
-            <img src="draw/1.pic.jpg" alt="Lily_sketch" class="draw">
+            <p>Sketch on notebook, brighten after taken the picture.</p>
+            <img src="draw/rose.jpg" alt="Rose_sketch" class="draw">
+            <hr/>
+            <p>Sketch of pink lily flower.</p>
+            <img src="draw/lily.jpg" alt="Lily_sketch" class="draw">
+            <hr/>
+            <p>First time draw with water color pencil, really enjoy it!</p>
+            <img src="draw/watercolor1.jpg" alt="My first watercolor pencil" class="draw">
         </section>
         <section id="section4">
-            <div id="about_me" class="about_me">
-		        <img src="img/me.png" alt="Li Yang">
-    		    <h1 id="intro"></h1>
-	       	    <div class="fa_connect">
-			        <a target="_blank" href="https://github.com/JoyceeLee"><i class="fa fa-github-alt fa-lg"></i></a>
-			        &nbsp;&nbsp;
-			        <a target="_blank" href="https://www.facebook.com/profile.php?id=100005769099353"><i class="fa fa-facebook fa-lg"></i></a>
-			        &nbsp;&nbsp;
-			        <a target="_blank" href="https://www.linkedin.com/pub/yang-li/71/407/32"><i class="fa fa-linkedin fa-lg"></i></a>
-			        &nbsp;&nbsp;
-			        <a href="#"><i class="fa fa-envelope fa-lg"></i></a>
-		        </div>
-	        </div>
             <ul class="introh1">
     			<li><b>As a student ...<br/></b>
     				<ul class="introh2">

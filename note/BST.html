@@ -1,0 +1,145 @@
+<p><span style="font-size: 13px;">If you need to maintain a list of objects that are sorted and unique</span></p>
+<div><span style="font-size: 13px;">&amp; if you need to be able to <span style="text-decoration: underline;">quickly insert and retrieve</span> objects to and from this list</span></div>
+<div><span style="font-size: 13px;">－－ the ideal data structure will be a tree set (or a tree map, if you consider each object a key and associate another object called a value to it).</span></div>
+<div>&nbsp;</div>
+<div><span style="color: #339966; font-size: 12px;">Implementation in Java : TreeSet&lt;T&gt;, TreeMap&lt;K, V&gt;</span></div>
+<div>&nbsp;</div>
+<div><span style="color: #00ccff;">A binary tree is a BST iff, for every node&nbsp;n, in the tree:</span></div>
+<div>
+<ul>
+<li><span style="color: #00ccff;">All keys in&nbsp;n's left subtree are less than the key in&nbsp;n, and</span></li>
+<li><span style="color: #00ccff;">all keys in&nbsp;n's right subtree are greater than the key in&nbsp;n.</span></li>
+</ul>
+</div>
+<div>&nbsp;</div>
+<div><strong>Insertion - O(log n)</strong></div>
+<div>From root all the way to leaf, compare and decide which side to go.</div>
+<div>The new node will always a leaf node.</div>
+<div>&nbsp;</div>
+<div><strong>Deletion - O(1)-O(log n)</strong></div>
+<div>
+<div>If n has no children, we only have to remove n from the tree.&nbsp;</div>
+</div>
+<div>
+<div>If n has a single child, we remove n and connect its parent to its child.&nbsp;</div>
+</div>
+<div>
+<div>If n has two children, we need to :&nbsp;</div>
+</div>
+<div>
+<div>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Find the smallest node that is larger than n, call it m.&nbsp;</div>
+</div>
+<div>
+<div>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remove m from the tree,&nbsp;Replace the value of n with m.</div>
+</div>
+<div>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(think : m will always have no left child)</div>
+<div>&nbsp;</div>
+<div><strong>Retrieval&nbsp;- O(log n)</strong></div>
+<div>For BST (binary search trees),</div>
+<div>although the <strong>average-case</strong> times for the&nbsp;<span style="text-decoration: underline;">lookup</span>,&nbsp;<span style="text-decoration: underline;">insert</span>, and&nbsp;<span style="text-decoration: underline;">delete</span>&nbsp;methods are all <strong>O(log N)</strong>, where N is the number of nodes in the tree,</div>
+<div>the <strong>worst-case</strong> time is <strong>O(N)</strong>.</div>
+<div>&nbsp;</div>
+<div><span style="color: #00ccff; font-size: 13px;">We can&nbsp;<strong>guarantee</strong>&nbsp;O(log N) time for all three methods by using a <strong>Balanced</strong> <strong>Tree</strong> -- a tree that always has height O(log N)-- instead of a binary search tree.</span></div>
+<div><span style="color: #00ccff; font-size: 13px;">&nbsp;</span></div>
+<div><span style="color: #00ccff; font-size: 13px;">Balanced Tree&nbsp;&mdash;&nbsp;<a href="evernote://www.cnblogs.com/view/3311312/s16/b1d81558-a749-4479-befe-5759d43061b7/b1d81558-a749-4479-befe-5759d43061b7/"><span style="color: #00ccff;">AVL tree</span></a>,&nbsp;2-4 tree, <a href="evernote://www.cnblogs.com/view/3311312/s16/6a85d5d4-86cc-4963-832b-399417ca2c08/6a85d5d4-86cc-4963-832b-399417ca2c08/"><span style="color: #00ccff;">red-black tree</span></a> and&nbsp;B trees</span></div>
+<div>&nbsp;</div>
+<div><em>"<strong><span style="text-decoration: underline;">fully populated</span></strong>" means that every internal node has exactly two children, and all terminal nodes are at the same depth.&nbsp;</em></div>
+<div>&nbsp;</div>
+<div>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> BST {
+</span><span style="color: #008080;"> 2</span>     <span style="color: #0000ff;">private</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> Node {
+</span><span style="color: #008080;"> 3</span>         <span style="color: #0000ff;">int</span><span style="color: #000000;"> val;
+</span><span style="color: #008080;"> 4</span> <span style="color: #000000;">        Node left;
+</span><span style="color: #008080;"> 5</span> <span style="color: #000000;">        Node right;
+</span><span style="color: #008080;"> 6</span>         
+<span style="color: #008080;"> 7</span>         <span style="color: #0000ff;">public</span><span style="color: #000000;"> Node() {}
+</span><span style="color: #008080;"> 8</span>         
+<span style="color: #008080;"> 9</span>         <span style="color: #0000ff;">public</span> Node(<span style="color: #0000ff;">int</span><span style="color: #000000;"> val) {
+</span><span style="color: #008080;">10</span>             <span style="color: #0000ff;">this</span>.val =<span style="color: #000000;"> val;
+</span><span style="color: #008080;">11</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">12</span>         
+<span style="color: #008080;">13</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> copy(Node n) {
+</span><span style="color: #008080;">14</span>             <span style="color: #0000ff;">this</span>.val =<span style="color: #000000;"> n.val;
+</span><span style="color: #008080;">15</span>             <span style="color: #0000ff;">this</span>.left =<span style="color: #000000;"> n.left;
+</span><span style="color: #008080;">16</span>             <span style="color: #0000ff;">this</span>.right =<span style="color: #000000;"> n.right;
+</span><span style="color: #008080;">17</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">18</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">19</span>     
+<span style="color: #008080;">20</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span><span style="color: #000000;"> Node root;
+</span><span style="color: #008080;">21</span>     
+<span style="color: #008080;">22</span>     <span style="color: #008000;">//</span><span style="color: #008000;"> Insert, O(lg n)</span>
+<span style="color: #008080;">23</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> insert(<span style="color: #0000ff;">int</span><span style="color: #000000;"> val) {
+</span><span style="color: #008080;">24</span>         root =<span style="color: #000000;"> insert(root, val);
+</span><span style="color: #008080;">25</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">26</span>     
+<span style="color: #008080;">27</span>     <span style="color: #0000ff;">private</span> Node insert(Node node, <span style="color: #0000ff;">int</span><span style="color: #000000;"> val) {
+</span><span style="color: #008080;">28</span>         <span style="color: #0000ff;">if</span> (node == <span style="color: #0000ff;">null</span><span style="color: #000000;">) {
+</span><span style="color: #008080;">29</span>             node = <span style="color: #0000ff;">new</span><span style="color: #000000;"> Node(val);
+</span><span style="color: #008080;">30</span>             <span style="color: #0000ff;">return</span><span style="color: #000000;"> node;
+</span><span style="color: #008080;">31</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">32</span>         
+<span style="color: #008080;">33</span>         <span style="color: #0000ff;">if</span> (node.val &gt; val) node.left =<span style="color: #000000;"> insert(node.left, val);
+</span><span style="color: #008080;">34</span>         <span style="color: #0000ff;">if</span> (node.val &lt; val) node.right =<span style="color: #000000;"> insert(node.right, val);
+</span><span style="color: #008080;">35</span>         
+<span style="color: #008080;">36</span>         <span style="color: #0000ff;">return</span><span style="color: #000000;"> node;
+</span><span style="color: #008080;">37</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">38</span>     
+<span style="color: #008080;">39</span>     <span style="color: #008000;">//</span><span style="color: #008000;">Search, O(lg n)</span>
+<span style="color: #008080;">40</span>     <span style="color: #0000ff;">public</span> Node search(<span style="color: #0000ff;">int</span><span style="color: #000000;"> val) {
+</span><span style="color: #008080;">41</span>         <span style="color: #0000ff;">return</span><span style="color: #000000;"> search(root, val);
+</span><span style="color: #008080;">42</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">43</span>     
+<span style="color: #008080;">44</span>     <span style="color: #0000ff;">private</span> Node search(Node node, <span style="color: #0000ff;">int</span><span style="color: #000000;"> val) {
+</span><span style="color: #008080;">45</span>         <span style="color: #0000ff;">if</span> (node == <span style="color: #0000ff;">null</span>) <span style="color: #0000ff;">return</span> <span style="color: #0000ff;">null</span><span style="color: #000000;">;
+</span><span style="color: #008080;">46</span>         
+<span style="color: #008080;">47</span>         <span style="color: #0000ff;">if</span> (node.val == val) <span style="color: #0000ff;">return</span><span style="color: #000000;"> node;
+</span><span style="color: #008080;">48</span>         <span style="color: #0000ff;">else</span> <span style="color: #0000ff;">if</span> (node.val &gt; val) <span style="color: #0000ff;">return</span><span style="color: #000000;"> search(node.left, val);
+</span><span style="color: #008080;">49</span>         <span style="color: #0000ff;">else</span> <span style="color: #0000ff;">return</span><span style="color: #000000;"> search(node.right, val);
+</span><span style="color: #008080;">50</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">51</span>     
+<span style="color: #008080;">52</span>     <span style="color: #008000;">//</span><span style="color: #008000;">Delete, O(1) - O(lg n)</span>
+<span style="color: #008080;">53</span>     <span style="color: #0000ff;">public</span> Node delete(<span style="color: #0000ff;">int</span><span style="color: #000000;"> val) {
+</span><span style="color: #008080;">54</span>         root =<span style="color: #000000;"> delete(root, val);
+</span><span style="color: #008080;">55</span>         <span style="color: #0000ff;">return</span><span style="color: #000000;"> root;
+</span><span style="color: #008080;">56</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">57</span>     
+<span style="color: #008080;">58</span>     <span style="color: #0000ff;">private</span> Node delete(Node node, <span style="color: #0000ff;">int</span><span style="color: #000000;"> val) {
+</span><span style="color: #008080;">59</span>         <span style="color: #0000ff;">if</span> (node == <span style="color: #0000ff;">null</span>) <span style="color: #0000ff;">return</span> <span style="color: #0000ff;">null</span><span style="color: #000000;">;
+</span><span style="color: #008080;">60</span>         <span style="color: #0000ff;">if</span> (node.val &gt; val) node.left =<span style="color: #000000;"> delete(node.left, val);
+</span><span style="color: #008080;">61</span>         <span style="color: #0000ff;">else</span> <span style="color: #0000ff;">if</span> (node.val &lt; val) node.right =<span style="color: #000000;"> delete(node.right, val);
+</span><span style="color: #008080;">62</span>         
+<span style="color: #008080;">63</span>         <span style="color: #0000ff;">else</span><span style="color: #000000;"> {
+</span><span style="color: #008080;">64</span>             Node del = <span style="color: #0000ff;">new</span><span style="color: #000000;"> Node();
+</span><span style="color: #008080;">65</span> <span style="color: #000000;">            del.copy(node);
+</span><span style="color: #008080;">66</span>         
+<span style="color: #008080;">67</span>             <span style="color: #0000ff;">if</span> (node.left == <span style="color: #0000ff;">null</span>) {node.copy(node.right); node.right = <span style="color: #0000ff;">null</span>; <span style="color: #0000ff;">return</span><span style="color: #000000;"> node;}
+</span><span style="color: #008080;">68</span>             <span style="color: #0000ff;">if</span> (node.right == <span style="color: #0000ff;">null</span>) {node.copy(node.left); node.left = <span style="color: #0000ff;">null</span>; <span style="color: #0000ff;">return</span><span style="color: #000000;"> node;}
+</span><span style="color: #008080;">69</span>         
+<span style="color: #008080;">70</span> <span style="color: #000000;">            node.copy(min(del.right));
+</span><span style="color: #008080;">71</span>             node.right =<span style="color: #000000;"> deleteMin(del.right);
+</span><span style="color: #008080;">72</span>             node.left =<span style="color: #000000;"> del.left;
+</span><span style="color: #008080;">73</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">74</span>         <span style="color: #0000ff;">return</span><span style="color: #000000;"> node;
+</span><span style="color: #008080;">75</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">76</span>     
+<span style="color: #008080;">77</span>     <span style="color: #0000ff;">private</span><span style="color: #000000;"> Node min (Node node) {
+</span><span style="color: #008080;">78</span>         <span style="color: #0000ff;">if</span> (node == <span style="color: #0000ff;">null</span> || node.left  == <span style="color: #0000ff;">null</span>) <span style="color: #0000ff;">return</span><span style="color: #000000;"> node;
+</span><span style="color: #008080;">79</span>         <span style="color: #0000ff;">return</span><span style="color: #000000;"> min(node.left);
+</span><span style="color: #008080;">80</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">81</span>     
+<span style="color: #008080;">82</span>     <span style="color: #008000;">//</span><span style="color: #008000;"> remove the smallest node and return new root;</span>
+<span style="color: #008080;">83</span>     <span style="color: #0000ff;">private</span><span style="color: #000000;"> Node deleteMin(Node node) {
+</span><span style="color: #008080;">84</span>         <span style="color: #0000ff;">if</span> (node == <span style="color: #0000ff;">null</span>) <span style="color: #0000ff;">return</span> <span style="color: #0000ff;">null</span><span style="color: #000000;">;
+</span><span style="color: #008080;">85</span>         <span style="color: #0000ff;">if</span> (node.left == <span style="color: #0000ff;">null</span><span style="color: #000000;">) {
+</span><span style="color: #008080;">86</span>             <span style="color: #0000ff;">return</span> node.right; <span style="color: #008000;">//</span><span style="color: #008000;"> node is deleted</span>
+<span style="color: #008080;">87</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">88</span>         node.left =<span style="color: #000000;"> deleteMin(node.left);
+</span><span style="color: #008080;">89</span>         <span style="color: #0000ff;">return</span><span style="color: #000000;"> node;
+</span><span style="color: #008080;">90</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">91</span> }</pre>
+</div>
+<p>&nbsp;</p>
+</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
