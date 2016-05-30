@@ -5,8 +5,8 @@
 
 <link rel="stylesheet" href="css/whole.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="font-awesome.min.css">
-<link rel="stylesheet" href="font-awesome-ie7.min.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/font-awesome-ie7.min.css">
 
 <script src="js/jquery-1.11.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -20,25 +20,52 @@
 
         $("a.navlink").click(function(){
             var section = $(this).attr("href");
-            // section = '"'+section+'"';
+            if (section === "#section2") {
+                var xmlhttp;
+                if (window.XMLHttpRequest) {
+                    // code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp=new XMLHttpRequest();
+                } else {
+                    // code for IE6, IE5
+                    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.open("GET","note/NoteIndex.html",false);
+                xmlhttp.send();
+                console.log(xmlhttp.responseText);
+                $("#section2").html(xmlhttp.responseText);
+            }
             $(section).siblings().hide();
             $(section).show();
         });
     });
+    
+    function loadXMLDoc(url){
+        var xmlhttp;
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp=new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.open("GET",url,false);
+        xmlhttp.send();
+        $("#section2").html(xmlhttp.responseText);
+    }
 </script>
 </head>
 <body id="container">
-    <div id="navside" class="col-md-2" role="complementary">
+    <div class="col-md-2" role="complementary">
 	    <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix">
             <ul id="navigaterlist" class="nav bs-docs-sidenav">
-                <a class="navlink" href="#section1" class="currentSec" style="background-color: rgba(255, 255, 255, 0.5);"><i class="fa fa-paw fa-lg"> Home Page</i></a>
-                <a class="navlink" href="#section2" style="background-color: rgba(255, 255, 255, 0.5);"><i class="fa fa-paw fa-lg"> Notes</i></a>
-                <a class="navlink" href="#section3" style="background-color: rgba(255, 255, 255, 0.5);"><i class="fa fa-paw fa-lg"> Draws</i></a>
-                <a class="navlink" href="#section4" style="background-color: rgba(255, 255, 255, 0.5);"><i class="fa fa-paw fa-lg"> About Me</i></a>
+                <a class="navlink" href="#section1" class="currentSec"><i class="fa fa-paw fa-lg"> Home Page</i></a>
+                <a class="navlink" href="#section2"><i class="fa fa-paw fa-lg"> Notes</i></a>
+                <a class="navlink" href="#section3"><i class="fa fa-paw fa-lg"> Draws</i></a>
+                <a class="navlink" href="#section4"><i class="fa fa-paw fa-lg"> About Me</i></a>
             </ul>
         </nav>
     </div>
-    <div class="col-md-9">
+    <div class="col-md-10">
         <section id="section1">
             <div id="about_me" class="about_me">
                 <img src="img/me3.jpg" alt="Li Yang">
@@ -55,9 +82,6 @@
             </div>
         </section>
         <section id="section2">
-            <h4 class="noteList"><a href="note/Sortings.html">7 most commen sort algorithms</a></h4>
-            <h4 class="noteList"><a href="note/BST.html">Binary Search Tree</a></h4>
-            <h4 class="noteList"><a href="note/RedBlackTree.html">Red-Black Tree</a></h4>
         </section>
         <section id="section3">
             <p>Sketch on notebook, brighten after taken the picture.</p>

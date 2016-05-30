@@ -15,8 +15,13 @@
 	to { opacity: 0.6; }
 }
 
-body {
-	/* background-image: url('../img/bg.jpg'); */
+html,body#container,div.col-md-10 {
+    height:100%;
+}
+
+div.col-md-2 {
+	height: 100%;
+	background-color: lightblue;
 }
 
 /* contents part */
@@ -24,9 +29,10 @@ section {
 	background-color: #ffffff;
 	font-family: Arial;
 	margin-bottom: 10px;
-	height: auto;
+	height: 100%;
 	padding: 20px 50px 30px 50px;
 	border: 5px, solid, #000000;
+	overflow: scroll;
 }
  
 /* The nav is fixed on the right side  and we center it by translating it 50% 
@@ -47,30 +53,26 @@ nav a {
 	display: block;
 	font-size: 13px;
 	font-family: Monaco, Consolas, monospace;
-	float: left;
 	margin-top: 0px;
 	margin-bottom: 5px;
 	width: 100px;
 	height: 35px;
 	color: #555;
-	border-radius: 20%;
+	border-radius: 48%;
 	box-shadow: 1px 1px 2px 3px rgba(0,0,0,0.3);
 }
 
+nav a.navlink {
+	background-color: rgba(255, 255, 255, 0.3);
+	margin-bottom: 13px;
+}
+
 nav a i {
-	float: left;
-	margin-top: 10px;
-	margin-left: 8px;
-}
- 
-nav a:after {
-    position: absolute;
-    height: 30px;
-    color: #f00;
-}
- 
-nav a:hover:after {
-    color: rgba(0,0,0,1);
+	float: left; 
+	font-style: normal;
+	margin-top: 9px;
+	width: 100%;
+	text-align: center;
 }
 
 .about_me img {
@@ -99,7 +101,7 @@ h1#intro {
 	padding-left: 30px;
 	padding-top: 20px;
 	font-size: 20px;
-	color: #004444;
+	color: #337ab7;
 	opacity: 0.6;
 	animation: fadeIn 2s;
 	-moz-animation: fadeIn 2s;
@@ -127,6 +129,12 @@ h1#intro {
 .introh2 img {
 	margin-bottom: 10px;
 }
+
+h4.noteList:hover {
+	color: #337ab7;
+	cursor:pointer;
+}
+
 .sec4but {
 	width: 30px; 
 	height: 30px; 
