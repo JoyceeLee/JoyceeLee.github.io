@@ -2,7 +2,7 @@ $(document).ready(function() {
 	var r = ["Hi.", 
     "I'm Li, Yang",
     "You can also call me Joyce.", 
-    "I major in Computer Science and now study at USC.",
+    "I major in Computer Science and work as Software Developer.",
     "I enjoy coding with Java, Python, C/C++,",
     "as well as playing with HTML, CSS & JavaScript.",
     "This is an on-going blog where I record my study and drawings.",
