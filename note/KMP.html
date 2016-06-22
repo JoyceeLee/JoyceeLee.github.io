@@ -3,9 +3,9 @@
 <p>Key point：Get table &nbsp;int T[]&nbsp;from W</p>
 <p>用变量 c 来表示当前比较到的&nbsp;W 中前面的字符,<br />i 表示当前要处理的 T 中的 index,<br />int[] T = new int[W.length];<br />T[0] = -1; T[1] = 0;<br />c=0; i=2</p>
 <p>example:<br />array: &nbsp; &nbsp;a &nbsp; &nbsp;b &nbsp; &nbsp;a &nbsp; &nbsp;b &nbsp; &nbsp;c &nbsp; &nbsp;d &nbsp; &nbsp;a &nbsp; &nbsp;b &nbsp; &nbsp;a &nbsp; &nbsp;b &nbsp; &nbsp;a &nbsp; &nbsp;b<br />idx &nbsp; &nbsp;: &nbsp; &nbsp;0 &nbsp; &nbsp;1 &nbsp; &nbsp;2 &nbsp; &nbsp;3 &nbsp; &nbsp;4 &nbsp; &nbsp;5 &nbsp; &nbsp;6 &nbsp; &nbsp;7 &nbsp; &nbsp;8 &nbsp; &nbsp;9 &nbsp; 10 &nbsp;11</p>
-<p>case 1: &nbsp;W[c] == W[i-1] --&gt; T[i] = ++c; i++;<br />case 2: &nbsp;W[c] != W[i-1] &amp;&amp; c&gt;0 --&gt; c = T[c];<br />case 3:&nbsp;W[c] != W[i-1] &amp;&amp; c==0 --&gt; T[i] = 0; i++;</p>
-<p>过程<br />array: a &nbsp; &nbsp;b &nbsp; &nbsp;a &nbsp; &nbsp;b &nbsp; &nbsp;c &nbsp; &nbsp;d &nbsp; &nbsp;a &nbsp; &nbsp;b &nbsp; &nbsp;a &nbsp; &nbsp;b &nbsp; &nbsp;a &nbsp; &nbsp;b<br />idx &nbsp; &nbsp;: 0 &nbsp; &nbsp;1 &nbsp; &nbsp;2 &nbsp; &nbsp;3 &nbsp; &nbsp;4 &nbsp; &nbsp;5 &nbsp; &nbsp;6 &nbsp; &nbsp;7 &nbsp; &nbsp;8 &nbsp; &nbsp;9 &nbsp; 10 &nbsp;11</p>
-<table class="mce-item-table">
+<p>case 1: &nbsp;W[c] == W[i-1] --&gt; T[i] = ++c; i++;<br />case 2: &nbsp;W[c] != W[i-1] &amp;&amp; c&gt;0 --&gt; c = T[c];<br />case 3: &nbsp;W[c] != W[i-1] &amp;&amp; c==0 --&gt; T[i] = 0; i++;</p>
+<p>过程<br />array: a &nbsp; &nbsp;b &nbsp; &nbsp;a &nbsp; &nbsp;b &nbsp; &nbsp;c &nbsp; &nbsp;d &nbsp; &nbsp;a &nbsp; &nbsp;b &nbsp; &nbsp;a &nbsp; &nbsp;b &nbsp; &nbsp;a &nbsp; &nbsp;b<br />idx &nbsp; : 0 &nbsp; &nbsp;1 &nbsp; &nbsp;2 &nbsp; &nbsp;3 &nbsp; &nbsp;4 &nbsp; &nbsp;5 &nbsp; &nbsp;6 &nbsp; &nbsp;7 &nbsp; &nbsp;8 &nbsp; &nbsp;9 &nbsp; 10 &nbsp;11</p>
+<table class="mce-item-table" style="height: 119px; width: 504px;">
 <tbody>
 <tr>
 <td>i:</td>
@@ -20,6 +20,9 @@
 <td>9</td>
 <td>10</td>
 <td>11</td>
+<td>11</td>
+
+
 
 
 </tr>
@@ -36,6 +39,9 @@
 <td>1</td>
 <td>1</td>
 <td>2</td>
+<td>1</td>
+
+
 
 
 </tr>
@@ -52,6 +58,9 @@
 <td>2</td>
 <td>3</td>
 <td>4</td>
+<td>2</td>
+
+
 
 
 </tr>
@@ -68,6 +77,9 @@
 <td>3</td>
 <td>4</td>
 <td>2</td>
+<td>3</td>
+
+
 
 
 </tr>
@@ -84,12 +96,19 @@
 <td>2 &amp; 8</td>
 <td>3 &amp; 9</td>
 <td>4 &amp; 10</td>
+<td>2 &amp; 10</td>
+
+
 
 
 </tr>
 
 
+
+
 </tbody>
+
+
 
 
 </table>
@@ -98,54 +117,68 @@
 <div class="cnblogs_code">
 <pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> Solution {
 </span><span style="color: #008080;"> 2</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">int</span><span style="color: #000000;"> strStr(String haystack, String needle) {
-</span><span style="color: #008080;"> 3</span>         <span style="color: #0000ff;">if</span> (needle==<span style="color: #0000ff;">null</span> || needle.length()==0<span style="color: #000000;">)
-</span><span style="color: #008080;"> 4</span>             <span style="color: #0000ff;">return</span> 0<span style="color: #000000;">;
-</span><span style="color: #008080;"> 5</span>         <span style="color: #0000ff;">int</span> ndlen =<span style="color: #000000;"> needle.length();
+</span><span style="color: #008080;"> 3</span>         <span style="color: #0000ff;">if</span> (needle == <span style="color: #0000ff;">null</span> || needle.length() == 0) <span style="color: #0000ff;">return</span> 0<span style="color: #000000;">;
+</span><span style="color: #008080;"> 4</span>         
+<span style="color: #008080;"> 5</span>         <span style="color: #0000ff;">int</span> ndlen =<span style="color: #000000;"> needle.length();
 </span><span style="color: #008080;"> 6</span>         <span style="color: #0000ff;">int</span> hslen =<span style="color: #000000;"> haystack.length();
-</span><span style="color: #008080;"> 7</span> 
-<span style="color: #008080;"> 8</span>         <span style="color: #0000ff;">if</span> (ndlen==1<span style="color: #000000;">) {
-</span><span style="color: #008080;"> 9</span>             <span style="color: #0000ff;">int</span> i=0<span style="color: #000000;">;
-</span><span style="color: #008080;">10</span>             <span style="color: #0000ff;">char</span> c = needle.charAt(0<span style="color: #000000;">);
-</span><span style="color: #008080;">11</span>             <span style="color: #0000ff;">while</span> (i&lt;<span style="color: #000000;">hslen) {
-</span><span style="color: #008080;">12</span>                 <span style="color: #0000ff;">if</span> (haystack.charAt(i)==<span style="color: #000000;">c) {
-</span><span style="color: #008080;">13</span>                     <span style="color: #0000ff;">return</span><span style="color: #000000;"> i;
-</span><span style="color: #008080;">14</span> <span style="color: #000000;">                }
-</span><span style="color: #008080;">15</span>                 i++<span style="color: #000000;">;
-</span><span style="color: #008080;">16</span> <span style="color: #000000;">            }
-</span><span style="color: #008080;">17</span>             <span style="color: #0000ff;">return</span> -1<span style="color: #000000;">;
-</span><span style="color: #008080;">18</span> <span style="color: #000000;">        }
-</span><span style="color: #008080;">19</span> 
-<span style="color: #008080;">20</span>         <span style="color: #0000ff;">int</span>[] T = <span style="color: #0000ff;">new</span> <span style="color: #0000ff;">int</span><span style="color: #000000;">[ndlen];
-</span><span style="color: #008080;">21</span>         T[0] = -1<span style="color: #000000;">;
-</span><span style="color: #008080;">22</span>         T[1] = 0<span style="color: #000000;">;
-</span><span style="color: #008080;">23</span>         <span style="color: #0000ff;">int</span> i=2, cnd=0<span style="color: #000000;">;
-</span><span style="color: #008080;">24</span>         <span style="color: #0000ff;">while</span> (i&lt;<span style="color: #000000;">ndlen) { 
-</span><span style="color: #008080;">25</span>             <span style="color: #0000ff;">if</span> (needle.charAt(cnd)==needle.charAt(i-1<span style="color: #000000;">)) { 
-</span><span style="color: #008080;">26</span>                 cnd++<span style="color: #000000;">; 
-</span><span style="color: #008080;">27</span>                 T[i++] =<span style="color: #000000;"> cnd; 
-</span><span style="color: #008080;">28</span>             } <span style="color: #0000ff;">else</span> <span style="color: #0000ff;">if</span> (cnd&gt;0<span style="color: #000000;">) {
-</span><span style="color: #008080;">29</span>                 cnd =<span style="color: #000000;"> T[cnd];
-</span><span style="color: #008080;">30</span>             } <span style="color: #0000ff;">else</span><span style="color: #000000;"> {
-</span><span style="color: #008080;">31</span>                 T[i++] = 0<span style="color: #000000;">;
-</span><span style="color: #008080;">32</span> <span style="color: #000000;">            }
-</span><span style="color: #008080;">33</span> <span style="color: #000000;">        }
-</span><span style="color: #008080;">34</span> 
-<span style="color: #008080;">35</span>         <span style="color: #0000ff;">int</span> ndidx=0, hsidx=0<span style="color: #000000;">;
-</span><span style="color: #008080;">36</span>         <span style="color: #0000ff;">while</span> (hsidx&lt;<span style="color: #000000;">hslen) {
-</span><span style="color: #008080;">37</span>             <span style="color: #0000ff;">if</span> (haystack.charAt(hsidx)==<span style="color: #000000;">needle.charAt(ndidx)) {
-</span><span style="color: #008080;">38</span>                 hsidx++<span style="color: #000000;">;
-</span><span style="color: #008080;">39</span>                 ndidx++<span style="color: #000000;">;
-</span><span style="color: #008080;">40</span>                 <span style="color: #0000ff;">if</span> (ndidx ==<span style="color: #000000;"> ndlen) {
-</span><span style="color: #008080;">41</span>                     <span style="color: #0000ff;">return</span> hsidx-<span style="color: #000000;">ndlen;
-</span><span style="color: #008080;">42</span> <span style="color: #000000;">                }
-</span><span style="color: #008080;">43</span>             } <span style="color: #0000ff;">else</span> <span style="color: #0000ff;">if</span> (T[ndidx]!=-1<span style="color: #000000;">) {
-</span><span style="color: #008080;">44</span>                 ndidx =<span style="color: #000000;"> T[ndidx];
-</span><span style="color: #008080;">45</span>             } <span style="color: #0000ff;">else</span><span style="color: #000000;"> {
-</span><span style="color: #008080;">46</span>                 hsidx++<span style="color: #000000;">;
-</span><span style="color: #008080;">47</span> <span style="color: #000000;">            }
-</span><span style="color: #008080;">48</span> <span style="color: #000000;">        }
-</span><span style="color: #008080;">49</span>         <span style="color: #0000ff;">return</span> -1<span style="color: #000000;">;
-</span><span style="color: #008080;">50</span> <span style="color: #000000;">    }
-</span><span style="color: #008080;">51</span> }</pre>
+</span><span style="color: #008080;"> 7</span>         
+<span style="color: #008080;"> 8</span>         <span style="color: #0000ff;">if</span> (ndlen == 1<span style="color: #000000;">) {
+</span><span style="color: #008080;"> 9</span>             <span style="color: #008000;">//</span><span style="color: #008000;"> only need to find the character in heystack</span>
+<span style="color: #008080;">10</span>             <span style="color: #0000ff;">return</span> strChar(haystack, needle.charAt(0<span style="color: #000000;">));
+</span><span style="color: #008080;">11</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">12</span>         
+<span style="color: #008080;">13</span>         <span style="color: #0000ff;">int</span>[] table =<span style="color: #000000;"> buildKMPTable(needle);
+</span><span style="color: #008080;">14</span>         
+<span style="color: #008080;">15</span>         <span style="color: #008000;">//</span><span style="color: #008000;"> KMP algorithm based on helper table</span>
+<span style="color: #008080;">16</span>         <span style="color: #0000ff;">int</span> ndidx = 0, hsidx = 0<span style="color: #000000;">;
+</span><span style="color: #008080;">17</span>         <span style="color: #0000ff;">while</span> (hsidx &lt;<span style="color: #000000;"> hslen) {
+</span><span style="color: #008080;">18</span>             <span style="color: #0000ff;">if</span> (haystack.charAt(hsidx) ==<span style="color: #000000;"> needle.charAt(ndidx)) {
+</span><span style="color: #008080;">19</span>                 hsidx++<span style="color: #000000;">;
+</span><span style="color: #008080;">20</span>                 ndidx++<span style="color: #000000;">;
+</span><span style="color: #008080;">21</span>                 <span style="color: #0000ff;">if</span> (ndidx == ndlen) <span style="color: #0000ff;">return</span> hsidx -<span style="color: #000000;"> ndlen;
+</span><span style="color: #008080;">22</span>             } <span style="color: #0000ff;">else</span> <span style="color: #0000ff;">if</span> (table[ndidx] != -1<span style="color: #000000;">) {
+</span><span style="color: #008080;">23</span>                 ndidx =<span style="color: #000000;"> table[ndidx];
+</span><span style="color: #008080;">24</span>             } <span style="color: #0000ff;">else</span><span style="color: #000000;"> {
+</span><span style="color: #008080;">25</span>                 hsidx++<span style="color: #000000;">;
+</span><span style="color: #008080;">26</span> <span style="color: #000000;">            }
+</span><span style="color: #008080;">27</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">28</span>         <span style="color: #0000ff;">return</span> -1<span style="color: #000000;">;
+</span><span style="color: #008080;">29</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">30</span>     
+<span style="color: #008080;">31</span>     <span style="color: #0000ff;">private</span> <span style="color: #0000ff;">int</span> strChar(String str, <span style="color: #0000ff;">char</span><span style="color: #000000;"> c) {
+</span><span style="color: #008080;">32</span>         <span style="color: #0000ff;">if</span> (str == <span style="color: #0000ff;">null</span> || str.length() == 0) <span style="color: #0000ff;">return</span> -1<span style="color: #000000;">;
+</span><span style="color: #008080;">33</span>         <span style="color: #0000ff;">for</span> (<span style="color: #0000ff;">int</span> i = 0; i &lt; str.length(); i++<span style="color: #000000;">) {
+</span><span style="color: #008080;">34</span>             <span style="color: #0000ff;">if</span> (str.charAt(i) == c) <span style="color: #0000ff;">return</span><span style="color: #000000;"> i;
+</span><span style="color: #008080;">35</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">36</span>         <span style="color: #0000ff;">return</span> -1<span style="color: #000000;">;
+</span><span style="color: #008080;">37</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">38</span>     
+<span style="color: #008080;">39</span>     <span style="color: #008000;">/*</span><span style="color: #008000;"> KMP table[i] contain the idx position that 
+</span><span style="color: #008080;">40</span> <span style="color: #008000;">     * when str[j] != word[i], compare str[j] &amp; word[table[i]]
+</span><span style="color: #008080;">41</span>      <span style="color: #008000;">*/</span>
+<span style="color: #008080;">42</span>     <span style="color: #0000ff;">private</span> <span style="color: #0000ff;">int</span><span style="color: #000000;">[] buildKMPTable(String needle) {
+</span><span style="color: #008080;">43</span>         <span style="color: #0000ff;">int</span>[] table = <span style="color: #0000ff;">new</span> <span style="color: #0000ff;">int</span><span style="color: #000000;">[needle.length()];
+</span><span style="color: #008080;">44</span>         
+<span style="color: #008080;">45</span>         <span style="color: #008000;">//</span><span style="color: #008000;"> needle.length() &gt; 1</span>
+<span style="color: #008080;">46</span>         table[0] = -1<span style="color: #000000;">;
+</span><span style="color: #008080;">47</span>         table[1] = 0<span style="color: #000000;">;
+</span><span style="color: #008080;">48</span>         <span style="color: #0000ff;">int</span> idx = 0<span style="color: #000000;">;
+</span><span style="color: #008080;">49</span>         <span style="color: #0000ff;">int</span> i = 2<span style="color: #000000;">;
+</span><span style="color: #008080;">50</span>         <span style="color: #0000ff;">while</span>(i &lt;<span style="color: #000000;"> needle.length())  {
+</span><span style="color: #008080;">51</span>             <span style="color: #0000ff;">char</span> pre =<span style="color: #000000;"> needle.charAt(idx);
+</span><span style="color: #008080;">52</span>             <span style="color: #0000ff;">char</span> cur = needle.charAt(i - 1<span style="color: #000000;">);
+</span><span style="color: #008080;">53</span>             <span style="color: #0000ff;">if</span> (pre == cur) { <span style="color: #008000;">//</span><span style="color: #008000;"> case 1. word[idx] == word[i-1] </span>
+<span style="color: #008080;">54</span>                 table[i++] = ++<span style="color: #000000;">idx;
+</span><span style="color: #008080;">55</span>             } <span style="color: #0000ff;">else</span><span style="color: #000000;"> {
+</span><span style="color: #008080;">56</span>                 <span style="color: #0000ff;">if</span> (idx == 0) { <span style="color: #008000;">//</span><span style="color: #008000;"> case 2. word[idx] != word[i-1] &amp;&amp; idx == 0</span>
+<span style="color: #008080;">57</span>                     table[i++] = 0<span style="color: #000000;">;
+</span><span style="color: #008080;">58</span>                 } <span style="color: #0000ff;">else</span> { <span style="color: #008000;">//</span><span style="color: #008000;"> case 3. word[idx] != word[i-1] &amp;&amp; idx &gt; 0</span>
+<span style="color: #008080;">59</span>                     idx =<span style="color: #000000;"> table[idx];
+</span><span style="color: #008080;">60</span> <span style="color: #000000;">                }
+</span><span style="color: #008080;">61</span> <span style="color: #000000;">            }
+</span><span style="color: #008080;">62</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">63</span>         <span style="color: #0000ff;">return</span><span style="color: #000000;"> table;
+</span><span style="color: #008080;">64</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">65</span> }</pre>
 </div>
 <p>&nbsp;</p>
