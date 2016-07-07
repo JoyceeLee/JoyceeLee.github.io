@@ -1,0 +1,201 @@
+<h3>Binary Tree Traversal</h3>
+<h4>-- Both Stack &amp; O(1) Space Morris Traversal</h4>
+<p>1. Preorder Tree Traversal</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #008000;">//</span><span style="color: #008000;"> Solution 1. With Stack
+</span><span style="color: #008080;"> 2</span> <span style="color: #008000;">//</span><span style="color: #008000;"> Time Complexity : O(n)
+</span><span style="color: #008080;"> 3</span> <span style="color: #008000;">//</span><span style="color: #008000;"> Space Complexity: O(h) ~ O(log n)</span>
+<span style="color: #008080;"> 4</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> Solution {
+</span><span style="color: #008080;"> 5</span>     <span style="color: #0000ff;">public</span> List&lt;Integer&gt;<span style="color: #000000;"> preorderTraversal(TreeNode root) {
+</span><span style="color: #008080;"> 6</span>         ArrayList&lt;Integer&gt; list = <span style="color: #0000ff;">new</span> ArrayList&lt;Integer&gt;<span style="color: #000000;">();
+</span><span style="color: #008080;"> 7</span>         <span style="color: #0000ff;">if</span> (root == <span style="color: #0000ff;">null</span>) <span style="color: #0000ff;">return</span><span style="color: #000000;"> list;
+</span><span style="color: #008080;"> 8</span>         
+<span style="color: #008080;"> 9</span>         Stack&lt;TreeNode&gt; stack = <span style="color: #0000ff;">new</span> Stack&lt;TreeNode&gt;<span style="color: #000000;">();
+</span><span style="color: #008080;">10</span> <span style="color: #000000;">        stack.push(root);
+</span><span style="color: #008080;">11</span>         TreeNode cur = <span style="color: #0000ff;">null</span><span style="color: #000000;">;
+</span><span style="color: #008080;">12</span>         <span style="color: #0000ff;">while</span> (!<span style="color: #000000;">stack.isEmpty()) {
+</span><span style="color: #008080;">13</span>             cur =<span style="color: #000000;"> stack.pop();
+</span><span style="color: #008080;">14</span>             list.add(cur.val); <span style="color: #008000;">//</span><span style="color: #008000;"> Do manipulation here</span>
+<span style="color: #008080;">15</span>             <span style="color: #0000ff;">if</span> (cur.right != <span style="color: #0000ff;">null</span><span style="color: #000000;">) stack.push(cur.right);
+</span><span style="color: #008080;">16</span>             <span style="color: #0000ff;">if</span> (cur.left != <span style="color: #0000ff;">null</span><span style="color: #000000;">) stack.push(cur.left);
+</span><span style="color: #008080;">17</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">18</span>         
+<span style="color: #008080;">19</span>         <span style="color: #0000ff;">return</span><span style="color: #000000;"> list;
+</span><span style="color: #008080;">20</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">21</span> }</pre>
+</div>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #008000;">//</span><span style="color: #008000;"> Solution 2. Morris Traversal
+</span><span style="color: #008080;"> 2</span> <span style="color: #008000;">//</span><span style="color: #008000;"> Time Complexity : O(n)
+</span><span style="color: #008080;"> 3</span> <span style="color: #008000;">//</span><span style="color: #008000;"> Space Complexity : O(1)</span>
+<span style="color: #008080;"> 4</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> Solution {
+</span><span style="color: #008080;"> 5</span>     <span style="color: #0000ff;">public</span> List&lt;Integer&gt;<span style="color: #000000;"> preorderTraversal(TreeNode root) {
+</span><span style="color: #008080;"> 6</span>         List&lt;Integer&gt; list = <span style="color: #0000ff;">new</span> ArrayList&lt;Integer&gt;<span style="color: #000000;">();
+</span><span style="color: #008080;"> 7</span>         
+<span style="color: #008080;"> 8</span>         TreeNode cur =<span style="color: #000000;"> root;
+</span><span style="color: #008080;"> 9</span>         TreeNode pre = <span style="color: #0000ff;">null</span><span style="color: #000000;">;
+</span><span style="color: #008080;">10</span>         <span style="color: #0000ff;">while</span> (cur != <span style="color: #0000ff;">null</span><span style="color: #000000;">) {
+</span><span style="color: #008080;">11</span>             <span style="color: #0000ff;">if</span> (cur.left != <span style="color: #0000ff;">null</span><span style="color: #000000;">) {
+</span><span style="color: #008080;">12</span>                 pre =<span style="color: #000000;"> cur.left;
+</span><span style="color: #008080;">13</span>                 <span style="color: #0000ff;">while</span> (pre.right != <span style="color: #0000ff;">null</span> &amp;&amp; pre.right != cur) { <span style="color: #008000;">//</span><span style="color: #008000;"> link / unlink</span>
+<span style="color: #008080;">14</span>                     pre =<span style="color: #000000;"> pre.right;
+</span><span style="color: #008080;">15</span> <span style="color: #000000;">                }
+</span><span style="color: #008080;">16</span>                 <span style="color: #0000ff;">if</span> (pre.right == <span style="color: #0000ff;">null</span><span style="color: #000000;">) {
+</span><span style="color: #008080;">17</span> <span style="color: #000000;">                    list.add(cur.val);
+</span><span style="color: #008080;">18</span>                     pre.right =<span style="color: #000000;"> cur;
+</span><span style="color: #008080;">19</span>                     cur =<span style="color: #000000;"> cur.left;
+</span><span style="color: #008080;">20</span>                 } <span style="color: #0000ff;">else</span><span style="color: #000000;"> {
+</span><span style="color: #008080;">21</span>                     pre.right = <span style="color: #0000ff;">null</span><span style="color: #000000;">;
+</span><span style="color: #008080;">22</span>                     cur =<span style="color: #000000;"> cur.right;
+</span><span style="color: #008080;">23</span> <span style="color: #000000;">                }
+</span><span style="color: #008080;">24</span>             } <span style="color: #0000ff;">else</span><span style="color: #000000;"> {
+</span><span style="color: #008080;">25</span> <span style="color: #000000;">                list.add(cur.val);
+</span><span style="color: #008080;">26</span>                 cur =<span style="color: #000000;"> cur.right;
+</span><span style="color: #008080;">27</span> <span style="color: #000000;">            }
+</span><span style="color: #008080;">28</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">29</span>         
+<span style="color: #008080;">30</span>         <span style="color: #0000ff;">return</span><span style="color: #000000;"> list;
+</span><span style="color: #008080;">31</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">32</span> }</pre>
+</div>
+<p>&nbsp;</p>
+<p>2. Inorder Tree Traversal</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #008000;">//</span><span style="color: #008000;"> Solution 1. With Stack
+</span><span style="color: #008080;"> 2</span> <span style="color: #008000;">//</span><span style="color: #008000;"> Time Complexity : O(n)
+</span><span style="color: #008080;"> 3</span> <span style="color: #008000;">//</span><span style="color: #008000;"> Space Complexity: O(h) ~ O(log n)</span>
+<span style="color: #008080;"> 4</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> Solution {
+</span><span style="color: #008080;"> 5</span>     <span style="color: #0000ff;">public</span> List&lt;Integer&gt;<span style="color: #000000;"> inorderTraversal(TreeNode root) {
+</span><span style="color: #008080;"> 6</span>         ArrayList&lt;Integer&gt; list = <span style="color: #0000ff;">new</span> ArrayList&lt;Integer&gt;<span style="color: #000000;">();
+</span><span style="color: #008080;"> 7</span>         <span style="color: #0000ff;">if</span> (root == <span style="color: #0000ff;">null</span>) <span style="color: #0000ff;">return</span><span style="color: #000000;"> list;
+</span><span style="color: #008080;"> 8</span>         
+<span style="color: #008080;"> 9</span>         TreeNode cur =<span style="color: #000000;"> root;
+</span><span style="color: #008080;">10</span>         Stack&lt;TreeNode&gt; stack = <span style="color: #0000ff;">new</span> Stack&lt;TreeNode&gt;<span style="color: #000000;">();
+</span><span style="color: #008080;">11</span>         <span style="color: #0000ff;">while</span> (cur != <span style="color: #0000ff;">null</span> || !<span style="color: #000000;">stack.isEmpty()) {
+</span><span style="color: #008080;">12</span>             <span style="color: #0000ff;">if</span> (cur != <span style="color: #0000ff;">null</span><span style="color: #000000;">) {
+</span><span style="color: #008080;">13</span> <span style="color: #000000;">                stack.push(cur);
+</span><span style="color: #008080;">14</span>                 cur =<span style="color: #000000;"> cur.left;
+</span><span style="color: #008080;">15</span>             } <span style="color: #0000ff;">else</span><span style="color: #000000;"> {
+</span><span style="color: #008080;">16</span>                 cur =<span style="color: #000000;"> stack.pop();
+</span><span style="color: #008080;">17</span>                 list.add(cur.val); <span style="color: #008000;">//</span><span style="color: #008000;"> Do manipulation here</span>
+<span style="color: #008080;">18</span>                 cur =<span style="color: #000000;"> cur.right;
+</span><span style="color: #008080;">19</span> <span style="color: #000000;">            }
+</span><span style="color: #008080;">20</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">21</span>         
+<span style="color: #008080;">22</span>         <span style="color: #0000ff;">return</span><span style="color: #000000;"> list;
+</span><span style="color: #008080;">23</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">24</span> }</pre>
+</div>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #008000;">//</span><span style="color: #008000;"> Solution 2. Morris Traversal
+</span><span style="color: #008080;"> 2</span> <span style="color: #008000;">//</span><span style="color: #008000;"> Time Complexity : O(n)
+</span><span style="color: #008080;"> 3</span> <span style="color: #008000;">//</span><span style="color: #008000;"> Space Complexity : O(1)</span>
+<span style="color: #008080;"> 4</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> Solution {
+</span><span style="color: #008080;"> 5</span>     <span style="color: #0000ff;">public</span> List&lt;Integer&gt;<span style="color: #000000;"> inorderTraversal(TreeNode root) {
+</span><span style="color: #008080;"> 6</span>         List&lt;Integer&gt; list = <span style="color: #0000ff;">new</span> ArrayList&lt;Integer&gt;<span style="color: #000000;">();
+</span><span style="color: #008080;"> 7</span>         
+<span style="color: #008080;"> 8</span>         TreeNode cur =<span style="color: #000000;"> root;
+</span><span style="color: #008080;"> 9</span>         TreeNode pre = <span style="color: #0000ff;">null</span><span style="color: #000000;">;
+</span><span style="color: #008080;">10</span>         <span style="color: #0000ff;">while</span> (cur != <span style="color: #0000ff;">null</span><span style="color: #000000;">) {
+</span><span style="color: #008080;">11</span>             <span style="color: #0000ff;">if</span> (cur.left != <span style="color: #0000ff;">null</span><span style="color: #000000;">) {
+</span><span style="color: #008080;">12</span>                 pre =<span style="color: #000000;"> cur.left;
+</span><span style="color: #008080;">13</span>                 <span style="color: #0000ff;">while</span> (pre.right != <span style="color: #0000ff;">null</span> &amp;&amp; pre.right !=<span style="color: #000000;"> cur) {
+</span><span style="color: #008080;">14</span>                     pre =<span style="color: #000000;"> pre.right;
+</span><span style="color: #008080;">15</span> <span style="color: #000000;">                }
+</span><span style="color: #008080;">16</span>                 <span style="color: #0000ff;">if</span> (pre.right == <span style="color: #0000ff;">null</span><span style="color: #000000;">) {
+</span><span style="color: #008080;">17</span>                     pre.right =<span style="color: #000000;"> cur;
+</span><span style="color: #008080;">18</span>                     cur =<span style="color: #000000;"> cur.left;
+</span><span style="color: #008080;">19</span>                 } <span style="color: #0000ff;">else</span><span style="color: #000000;"> {
+</span><span style="color: #008080;">20</span>                     pre.right = <span style="color: #0000ff;">null</span><span style="color: #000000;">;
+</span><span style="color: #008080;">21</span> <span style="color: #000000;">                    list.add(cur.val);
+</span><span style="color: #008080;">22</span>                     cur =<span style="color: #000000;"> cur.right;
+</span><span style="color: #008080;">23</span> <span style="color: #000000;">                }
+</span><span style="color: #008080;">24</span>             } <span style="color: #0000ff;">else</span><span style="color: #000000;"> {
+</span><span style="color: #008080;">25</span> <span style="color: #000000;">                list.add(cur.val);
+</span><span style="color: #008080;">26</span>                 cur =<span style="color: #000000;"> cur.right;
+</span><span style="color: #008080;">27</span> <span style="color: #000000;">            }
+</span><span style="color: #008080;">28</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">29</span>         <span style="color: #0000ff;">return</span><span style="color: #000000;"> list;
+</span><span style="color: #008080;">30</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">31</span> }</pre>
+</div>
+<p>&nbsp;</p>
+<p>3. Postorder Tree Traversal</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #008000;">//</span><span style="color: #008000;"> Solution 1. With Stack
+</span><span style="color: #008080;"> 2</span> <span style="color: #008000;">//</span><span style="color: #008000;"> Time Complexity : O(n)
+</span><span style="color: #008080;"> 3</span> <span style="color: #008000;">//</span><span style="color: #008000;"> Space Complexity: O(h) ~ O(log n)</span>
+<span style="color: #008080;"> 4</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> Solution {
+</span><span style="color: #008080;"> 5</span>     <span style="color: #0000ff;">public</span> List&lt;Integer&gt;<span style="color: #000000;"> postorderTraversal(TreeNode root) {
+</span><span style="color: #008080;"> 6</span>         ArrayList&lt;Integer&gt; list = <span style="color: #0000ff;">new</span> ArrayList&lt;Integer&gt;<span style="color: #000000;">();
+</span><span style="color: #008080;"> 7</span>         <span style="color: #0000ff;">if</span> (root == <span style="color: #0000ff;">null</span>) <span style="color: #0000ff;">return</span><span style="color: #000000;"> list;
+</span><span style="color: #008080;"> 8</span>         
+<span style="color: #008080;"> 9</span>         TreeNode pre = <span style="color: #0000ff;">null</span><span style="color: #000000;">;
+</span><span style="color: #008080;">10</span>         TreeNode cur =<span style="color: #000000;"> root;
+</span><span style="color: #008080;">11</span>         Stack&lt;TreeNode&gt; stack = <span style="color: #0000ff;">new</span> Stack&lt;TreeNode&gt;<span style="color: #000000;">();
+</span><span style="color: #008080;">12</span>         <span style="color: #0000ff;">while</span> (cur != <span style="color: #0000ff;">null</span> || !<span style="color: #000000;">stack.isEmpty()) {
+</span><span style="color: #008080;">13</span>             <span style="color: #0000ff;">if</span> (cur != <span style="color: #0000ff;">null</span><span style="color: #000000;">) {
+</span><span style="color: #008080;">14</span> <span style="color: #000000;">                stack.push(cur);
+</span><span style="color: #008080;">15</span>                 cur =<span style="color: #000000;"> cur.left;
+</span><span style="color: #008080;">16</span>             } <span style="color: #0000ff;">else</span><span style="color: #000000;"> {
+</span><span style="color: #008080;">17</span>                 cur =<span style="color: #000000;"> stack.pop();
+</span><span style="color: #008080;">18</span>                 <span style="color: #0000ff;">if</span> (cur.right == <span style="color: #0000ff;">null</span> || pre == cur.right) { <span style="color: #008000;">//</span><span style="color: #008000;"> won't put back</span>
+<span style="color: #008080;">19</span>                     list.add(cur.val); <span style="color: #008000;">//</span><span style="color: #008000;"> Do manipulation here</span>
+<span style="color: #008080;">20</span>                     pre =<span style="color: #000000;"> cur;
+</span><span style="color: #008080;">21</span>                     cur = <span style="color: #0000ff;">null</span><span style="color: #000000;">;
+</span><span style="color: #008080;">22</span>                 } <span style="color: #0000ff;">else</span><span style="color: #000000;"> {
+</span><span style="color: #008080;">23</span> <span style="color: #000000;">                    stack.push(cur);
+</span><span style="color: #008080;">24</span>                     cur =<span style="color: #000000;"> cur.right;
+</span><span style="color: #008080;">25</span> <span style="color: #000000;">                }
+</span><span style="color: #008080;">26</span> <span style="color: #000000;">            }
+</span><span style="color: #008080;">27</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">28</span>         
+<span style="color: #008080;">29</span>         <span style="color: #0000ff;">return</span><span style="color: #000000;"> list;
+</span><span style="color: #008080;">30</span> <span style="color: #000000;">    } 
+</span><span style="color: #008080;">31</span> }</pre>
+</div>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #008000;">//</span><span style="color: #008000;"> Solution 2. Morris Traversal
+</span><span style="color: #008080;"> 2</span> <span style="color: #008000;">//</span><span style="color: #008000;"> Time Complexity : O(n)
+</span><span style="color: #008080;"> 3</span> <span style="color: #008000;">//</span><span style="color: #008000;"> Space Complexity : O(1)</span>
+<span style="color: #008080;"> 4</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> Solution {
+</span><span style="color: #008080;"> 5</span>     <span style="color: #0000ff;">public</span> List&lt;Integer&gt;<span style="color: #000000;"> postorderTraversal(TreeNode root) {
+</span><span style="color: #008080;"> 6</span>         List&lt;Integer&gt; list = <span style="color: #0000ff;">new</span> ArrayList&lt;Integer&gt;<span style="color: #000000;">();
+</span><span style="color: #008080;"> 7</span>         
+<span style="color: #008080;"> 8</span>         TreeNode dump = <span style="color: #0000ff;">new</span> TreeNode(-1<span style="color: #000000;">);
+</span><span style="color: #008080;"> 9</span>         dump.left =<span style="color: #000000;"> root;
+</span><span style="color: #008080;">10</span>         
+<span style="color: #008080;">11</span>         TreeNode cur =<span style="color: #000000;"> dump;
+</span><span style="color: #008080;">12</span>         TreeNode pre = <span style="color: #0000ff;">null</span><span style="color: #000000;">;
+</span><span style="color: #008080;">13</span>         <span style="color: #0000ff;">while</span> (cur != <span style="color: #0000ff;">null</span><span style="color: #000000;">) {
+</span><span style="color: #008080;">14</span>             <span style="color: #0000ff;">if</span> (cur.left != <span style="color: #0000ff;">null</span><span style="color: #000000;">) {
+</span><span style="color: #008080;">15</span>                 pre =<span style="color: #000000;"> cur.left;
+</span><span style="color: #008080;">16</span>                 <span style="color: #0000ff;">while</span> (pre.right != <span style="color: #0000ff;">null</span> &amp;&amp; pre.right !=<span style="color: #000000;"> cur) {
+</span><span style="color: #008080;">17</span>                     pre =<span style="color: #000000;"> pre.right;
+</span><span style="color: #008080;">18</span> <span style="color: #000000;">                }
+</span><span style="color: #008080;">19</span>                 <span style="color: #0000ff;">if</span> (pre.right == <span style="color: #0000ff;">null</span><span style="color: #000000;">) {
+</span><span style="color: #008080;">20</span>                     pre.right =<span style="color: #000000;"> cur;
+</span><span style="color: #008080;">21</span>                     cur =<span style="color: #000000;"> cur.left;
+</span><span style="color: #008080;">22</span>                 } <span style="color: #0000ff;">else</span><span style="color: #000000;"> {
+</span><span style="color: #008080;">23</span>                     List&lt;Integer&gt; rev = <span style="color: #0000ff;">new</span> ArrayList&lt;Integer&gt;<span style="color: #000000;">();
+</span><span style="color: #008080;">24</span>                     TreeNode tmp =<span style="color: #000000;"> cur.left;
+</span><span style="color: #008080;">25</span>                     <span style="color: #0000ff;">while</span> (tmp !=<span style="color: #000000;"> cur) {
+</span><span style="color: #008080;">26</span> <span style="color: #000000;">                        rev.add(tmp.val);
+</span><span style="color: #008080;">27</span>                         tmp =<span style="color: #000000;"> tmp.right;
+</span><span style="color: #008080;">28</span> <span style="color: #000000;">                    }
+</span><span style="color: #008080;">29</span>                     <span style="color: #0000ff;">if</span> (!<span style="color: #000000;">rev.isEmpty()) {
+</span><span style="color: #008080;">30</span>                         Collections.reverse(rev); <span style="color: #008000;">//</span><span style="color: #008000;"> Collections.reverse return void</span>
+<span style="color: #008080;">31</span> <span style="color: #000000;">                        list.addAll(rev);
+</span><span style="color: #008080;">32</span> <span style="color: #000000;">                    }
+</span><span style="color: #008080;">33</span>                     pre.right = <span style="color: #0000ff;">null</span><span style="color: #000000;">;
+</span><span style="color: #008080;">34</span>                     cur =<span style="color: #000000;"> cur.right;
+</span><span style="color: #008080;">35</span> <span style="color: #000000;">                } 
+</span><span style="color: #008080;">36</span>             } <span style="color: #0000ff;">else</span><span style="color: #000000;"> {
+</span><span style="color: #008080;">37</span>                     cur =<span style="color: #000000;"> cur.right;
+</span><span style="color: #008080;">38</span> <span style="color: #000000;">            }
+</span><span style="color: #008080;">39</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">40</span>         <span style="color: #0000ff;">return</span><span style="color: #000000;"> list;
+</span><span style="color: #008080;">41</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">42</span> }</pre>
+</div>
+<p>&nbsp;</p>
