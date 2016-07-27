@@ -1,0 +1,174 @@
+<h3>Abstract Class v.s. Interface</h3>
+<p><strong>Refer</strong></p>
+<p><a title="http://www.jianshu.com/p/2b5a9bdcd25f" href="http://www.jianshu.com/p/2b5a9bdcd25f" target="_blank">http://www.jianshu.com/p/2b5a9bdcd25f</a></p>
+<p><a title="https://docs.oracle.com/javase/tutorial/java/IandI/abstract.html" href="https://docs.oracle.com/javase/tutorial/java/IandI/abstract.html" target="_blank">https://docs.oracle.com/javase/tutorial/java/IandI/abstract.html</a></p>
+<p>&nbsp;</p>
+<p style="text-align: left;"><strong>Review Access Level</strong></p>
+<table style="height: 95px; float: left; width: 540px;" border="0">
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Modifier</strong></td>
+<td style="text-align: center;"><strong>Class self</strong></td>
+<td style="text-align: center;"><strong>Package</strong></td>
+<td style="text-align: center;"><strong>Subclass</strong></td>
+<td style="text-align: center;"><strong>World</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">public</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">Y</td>
+</tr>
+<tr>
+<td style="text-align: center;">protected</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">N</td>
+</tr>
+<tr>
+<td style="text-align: center;">no modifier</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">N</td>
+</tr>
+<tr>
+<td style="text-align: center;">private</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">N</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>In General</strong></p>
+<p>Abstract Class -- Class which has the common <span style="text-decoration: underline;">variable</span> and <span style="text-decoration: underline;">function</span> of a certain type of Classes; Such as Cat and Dog.</p>
+<p>Interface defines -- group of ONLY&nbsp;<span style="text-decoration: underline;">functions</span>, which any class will behave like these functions could use; Such as Bird and Flight</p>
+<p>&nbsp;</p>
+<p><strong>Abstract Class</strong></p>
+<p>1. Cannot be&nbsp;instantiated (<span style="text-decoration: line-through; color: #3366ff;">new</span>), But can have constructor</p>
+<p>2. If a class inlcudes an <span style="text-decoration: underline;">abstract function</span>, it must be defiend as <span style="text-decoration: underline;">Abstract class</span></p>
+<p>3. Subclass must override <span style="text-decoration: underline;">abstract function</span></p>
+<p>4. Abstract class could contain <span style="text-decoration: underline;">non-abstract function</span></p>
+<p>5.&nbsp;Abstract class could <span style="text-decoration: underline;">NOT</span> contain abstract function</p>
+<p>6. Abstract class could contain <span style="text-decoration: underline;">Variables</span>, with any <span style="text-decoration: underline;">access level</span> (<span style="color: #3366ff;">public, protected, private</span>)</p>
+<p>7.&nbsp;Abstract class could contain <span style="text-decoration: underline;">Static Variables</span>, with any <span style="text-decoration: underline;">access level</span></p>
+<p>8. <span style="text-decoration: underline;">Abstract function in Subclass</span> cannot use <span style="text-decoration: underline;">the same name as</span> one abstract function in parent.</p>
+<p>9. <span style="text-decoration: underline;">Abstract function</span> cannot use modifier as <span style="color: #3366ff;">Private</span>, <span style="color: #3366ff;">Static</span>, <span style="color: #3366ff;">Final</span> or <span style="color: #3366ff;">Native</span>.</p>
+<p>10.&nbsp;When the subclass does NOT&nbsp;<span style="text-decoration: underline;">implement</span>&nbsp;ALL of the <span style="text-decoration: underline;">abstract methods</span>, the subclass must also be declared Abstract</p>
+<p>&nbsp;</p>
+<p><strong>Interface</strong></p>
+<p>1. All functions in Interface will <span style="text-decoration: underline;">automatically</span> be <span style="color: #0000ff;">public</span>, and can NOT be declare as <span style="text-decoration: underline;">protected</span> or <span style="text-decoration: underline;">private</span> -- compile error</p>
+<p>2. There could be variables in Interface, but they will automatically be <span style="color: #0000ff;">public final static</span>, which means they are <span style="text-decoration: underline;">constant</span>, and <span style="text-decoration: underline;">must</span> be <span style="color: #0000ff;">explicitly initialize</span>.</p>
+<p>3. All functions in the interface can NOT be <span style="color: #0000ff;">static</span></p>
+<p>4. If a <span style="text-decoration: underline;">non-abstract</span>&nbsp;class implements an interface, it must implement all functions in the interface</p>
+<p>5. If an <span style="text-decoration: underline;">abstract</span> class implements an interface, it do NOT have to implement all functions</p>
+<p>6. Use <span style="color: #0000ff;">instanceOf</span> to determine whether a class implements an interface</p>
+<p>7. Take care of functions in different interface with the same name.</p>
+<p>&nbsp;</p>
+<p><strong>When to use which</strong></p>
+<ul>
+<li>Consider using abstract classes if any of these statements apply to your situation:
+<ul>
+<li>You want to share code among several closely related classes.</li>
+<li>You expect that classes that extend your abstract class have many common methods or fields, or require access modifiers other than public (such as protected and private).</li>
+<li>You want to declare non-static or non-final fields. This enables you to define methods that can access and modify the state of the object to which they belong.</li>
+</ul>
+</li>
+<li>Consider using interfaces if any of these statements apply to your situation:
+<ul>
+<li>You expect that unrelated classes would implement your interface.&nbsp;</li>
+<li>You want to specify the behavior of a particular data type, but not concerned about who implements its behavior.</li>
+<li>You want to take advantage of multiple inheritance of type.</li>
+</ul>
+</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>Examples</strong></p>
+<p>Interface does not have the Diamond Problem</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">interface</span><span style="color: #000000;"> T1 {
+</span><span style="color: #008080;"> 2</span>     <span style="color: #0000ff;">void</span><span style="color: #000000;"> print();
+</span><span style="color: #008080;"> 3</span> <span style="color: #000000;">}
+</span><span style="color: #008080;"> 4</span> 
+<span style="color: #008080;"> 5</span> <span style="color: #0000ff;">interface</span><span style="color: #000000;"> T2 {
+</span><span style="color: #008080;"> 6</span>     <span style="color: #0000ff;">void</span><span style="color: #000000;"> print();
+</span><span style="color: #008080;"> 7</span> <span style="color: #000000;">}
+</span><span style="color: #008080;"> 8</span> 
+<span style="color: #008080;"> 9</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span> Test <span style="color: #0000ff;">implements</span><span style="color: #000000;"> T1, T2 {
+</span><span style="color: #008080;">10</span> 
+<span style="color: #008080;">11</span> <span style="color: #000000;">    @Override
+</span><span style="color: #008080;">12</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> print() {
+</span><span style="color: #008080;">13</span>         <span style="color: #008000;">//</span><span style="color: #008000;"> TODO Auto-generated method stub</span>
+<span style="color: #008080;">14</span>         System.out.println("Hello World!"<span style="color: #000000;">);
+</span><span style="color: #008080;">15</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">16</span>     
+<span style="color: #008080;">17</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> main(String[] args) {
+</span><span style="color: #008080;">18</span>         Test t = <span style="color: #0000ff;">new</span><span style="color: #000000;"> Test();
+</span><span style="color: #008080;">19</span> <span style="color: #000000;">        t.print();
+</span><span style="color: #008080;">20</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">21</span> }</pre>
+</div>
+<p>&nbsp;</p>
+<p>Functions in 2 interfaces with <span style="text-decoration: underline;">same name/different return types</span> cannot be implement by one class</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">interface</span><span style="color: #000000;"> T1 {
+    </span><strong><span style="color: #0000ff;">void</span></strong><span style="color: #000000;"> print();
+}
+
+</span><span style="color: #0000ff;">interface</span><span style="color: #000000;"> T2 {
+    </span><strong><span style="color: #0000ff;">int</span></strong><span style="color: #000000;"> print();
+}
+
+</span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span> Test <span style="color: #0000ff;">implements</span><span style="color: #000000;"> T1, T2 {
+    @Override
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> print() {
+    }
+    
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> main(String[] args) {
+        Test t </span>= <span style="color: #0000ff;">new</span><span style="color: #000000;"> Test();
+        t.print();
+    }
+}<br /></span></pre>
+<p><span style="color: #ff0000;">Unresolved compilation problem:&nbsp;</span></p>
+<p><span class="Apple-tab-span" style="color: #ff0000;"> The return type is incompatible with T2.print()</span></p>
+<pre></pre>
+</div>
+<p>JDK 1.8 support default implementation of abstract function in Interface</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">interface</span><span style="color: #000000;"> T1 {
+    </span><span style="color: #0000ff;">default</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> print1() {
+        System.out.println(</span>"print1"<span style="color: #000000;">);
+    }
+}
+
+</span><span style="color: #0000ff;">interface</span><span style="color: #000000;"> T2 {
+    </span><span style="color: #0000ff;">default</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> print2() {
+        System.out.println(</span>"print2"<span style="color: #000000;">);
+    }
+}
+
+</span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span> Test <span style="color: #0000ff;">implements</span><span style="color: #000000;"> T1, T2 {
+
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> print() {
+        print1();
+        print2();
+        
+    }
+    
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> main(String[] args) {
+        Test t </span>= <span style="color: #0000ff;">new</span><span style="color: #000000;"> Test();
+        t.print();
+    }
+}<br /><span style="color: #008000;">/*</span><br /></span></pre>
+<p><span style="color: #008000;">print1</span></p>
+<p><span style="color: #008000;">print2</span></p>
+<pre><span style="color: #008000;">*/</span></pre>
+</div>
+<p>&nbsp;</p>
