@@ -49,14 +49,14 @@
 <p>&nbsp;</p>
 <p><strong>In General</strong></p>
 <p>Abstract Class -- Class which has the common <span style="text-decoration: underline;">variable</span> and <span style="text-decoration: underline;">function</span> of a certain type of Classes; Such as Cat and Dog.</p>
-<p>Interface defines -- group of ONLY&nbsp;<span style="text-decoration: underline;">functions</span>, which any class will behave like these functions could use; Such as Bird and Flight</p>
+<p>Interface -- group of ONLY&nbsp;<span style="text-decoration: underline;">functions</span>, which any class will behave like these functions could use; Such as Bird and Flight</p>
 <p>&nbsp;</p>
 <p><strong>Abstract Class</strong></p>
 <p>1. Cannot be&nbsp;instantiated (<span style="text-decoration: line-through; color: #3366ff;">new</span>), But can have constructor</p>
 <p>2. If a class inlcudes an <span style="text-decoration: underline;">abstract function</span>, it must be defiend as <span style="text-decoration: underline;">Abstract class</span></p>
 <p>3. Subclass must override <span style="text-decoration: underline;">abstract function</span></p>
 <p>4. Abstract class could contain <span style="text-decoration: underline;">non-abstract function</span></p>
-<p>5.&nbsp;Abstract class could <span style="text-decoration: underline;">NOT</span> contain abstract function</p>
+<p>5.&nbsp;Abstract class may <span style="text-decoration: underline;">NOT</span> contain abstract function</p>
 <p>6. Abstract class could contain <span style="text-decoration: underline;">Variables</span>, with any <span style="text-decoration: underline;">access level</span> (<span style="color: #3366ff;">public, protected, private</span>)</p>
 <p>7.&nbsp;Abstract class could contain <span style="text-decoration: underline;">Static Variables</span>, with any <span style="text-decoration: underline;">access level</span></p>
 <p>8. <span style="text-decoration: underline;">Abstract function in Subclass</span> cannot use <span style="text-decoration: underline;">the same name as</span> one abstract function in parent.</p>
@@ -140,7 +140,7 @@
 <p><span class="Apple-tab-span" style="color: #ff0000;"> The return type is incompatible with T2.print()</span></p>
 <pre></pre>
 </div>
-<p>JDK 1.8 support default implementation of abstract function in Interface</p>
+<p>JDK 1.8 support <span style="text-decoration: underline;">Default Implementation</span> of function in Interface</p>
 <div class="cnblogs_code">
 <pre><span style="color: #0000ff;">interface</span><span style="color: #000000;"> T1 {
     </span><span style="color: #0000ff;">default</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> print1() {
@@ -159,7 +159,6 @@
     </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> print() {
         print1();
         print2();
-        
     }
     
     </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> main(String[] args) {
@@ -170,5 +169,41 @@
 <p><span style="color: #008000;">print1</span></p>
 <p><span style="color: #008000;">print2</span></p>
 <pre><span style="color: #008000;">*/</span></pre>
+</div>
+<p>&nbsp;</p>
+<p>Abstract cannot be Implemented, but can be used to declare Array</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">abstract</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> AC {
+    </span><span style="color: #0000ff;">public</span><span style="color: #000000;"> AC() { }
+}
+
+</span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span> Test <span style="color: #0000ff;">extends</span><span style="color: #000000;"> AC {
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> main(String[] args) {
+        Test t </span>= (Test) <span style="color: #0000ff;">new</span> <span style="color: #ff0000;">AC</span>(); <span style="color: #008000;">//</span><span style="color: #008000;"> will be Error</span>
+        Test[] ts = (Test[]) <span style="color: #0000ff;">new</span> AC[10]; <span style="color: #008000;">//</span><span style="color: #008000;"> correct</span>
+<span style="color: #000000;">    }
+}</span></pre>
+</div>
+<p>&nbsp;</p>
+<p>Anonymous Inner Class</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">abstract</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> AC1 {
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">abstract</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> print();
+}
+
+</span><span style="color: #0000ff;">abstract</span> <span style="color: #0000ff;">class</span> AC2 {    } <span style="color: #008000;">//</span><span style="color: #008000;"> abstract class without Abstract funtcion</span>
+
+<span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> Test {
+    
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> main(String[] args) {
+        AC1 ac1 </span>= <span style="color: #0000ff;">new</span><span style="color: #000000;"> AC1() {
+            @Override
+            </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> print() {
+                System.out.println(</span>"Hello World!"<span style="color: #000000;">);
+            }
+        };
+        AC2 ac2 </span>= <span style="color: #0000ff;">new</span><span style="color: #000000;"> AC2() { };
+    }
+}</span></pre>
 </div>
 <p>&nbsp;</p>
