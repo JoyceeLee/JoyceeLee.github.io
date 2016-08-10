@@ -185,7 +185,7 @@
 }</span></pre>
 </div>
 <p>&nbsp;</p>
-<p>Anonymous Inner Class</p>
+<p>Anonymous Inner Class -- An inner class declared <span style="text-decoration: underline;">without a class name</span></p>
 <div class="cnblogs_code">
 <pre><span style="color: #0000ff;">abstract</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> AC1 {
     </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">abstract</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> print();
@@ -196,13 +196,39 @@
 <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> Test {
     
     </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> main(String[] args) {
-        AC1 ac1 </span>= <span style="color: #0000ff;">new</span><span style="color: #000000;"> AC1() {
+        AC1 ac1 </span>= <strong><span style="color: #0000ff;">new</span></strong><span style="color: #000000;"><strong> AC1()</strong> {
             @Override
             </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> print() {
                 System.out.println(</span>"Hello World!"<span style="color: #000000;">);
             }
         };
         AC2 ac2 </span>= <span style="color: #0000ff;">new</span><span style="color: #000000;"> AC2() { };
+    }
+}</span></pre>
+</div>
+<p>&nbsp;</p>
+<p>Anonymous Implementation</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">interface</span><span style="color: #000000;"> It {
+    </span><span style="color: #0000ff;">int</span> compare(<span style="color: #0000ff;">int</span> a, <span style="color: #0000ff;">int</span><span style="color: #000000;"> b);
+}
+
+</span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> Test {
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">boolean</span> Larger(<span style="color: #0000ff;">int</span> a, <span style="color: #0000ff;">int</span><span style="color: #000000;"> b, It it) {
+        </span><span style="color: #0000ff;">return</span> it.compare(a, b) &gt; 0<span style="color: #000000;">;
+    }
+    
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> main(String[] args) {
+        Test test </span>= <span style="color: #0000ff;">new</span><span style="color: #000000;"> Test();
+        
+        test.Larger(</span>2, 1, <span style="color: #0000ff;">new</span> It() { <span style="color: #008000;">//</span><span style="color: #008000;"> Anonymous Implementation</span>
+<span style="color: #000000;">            @Override
+            </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">int</span> compare(<span style="color: #0000ff;">int</span> a, <span style="color: #0000ff;">int</span><span style="color: #000000;"> b) {
+                </span><span style="color: #0000ff;">if</span> (a &gt; b) <span style="color: #0000ff;">return</span> 1<span style="color: #000000;">;
+                </span><span style="color: #0000ff;">else</span> <span style="color: #0000ff;">if</span> (a == b) <span style="color: #0000ff;">return</span> 0<span style="color: #000000;">;
+                </span><span style="color: #0000ff;">else</span> <span style="color: #0000ff;">return</span> -1<span style="color: #000000;">;
+            }
+        } );
     }
 }</span></pre>
 </div>
